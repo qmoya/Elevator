@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5020B0B1D38F6810028CD1D /* ElevatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5020B0A1D38F6810028CD1D /* ElevatorController.swift */; };
+		A5020B0D1D38F7360028CD1D /* MoveOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5020B0C1D38F7360028CD1D /* MoveOperation.swift */; };
+		A5020B0F1D38FA2A0028CD1D /* CloseDoorsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5020B0E1D38FA2A0028CD1D /* CloseDoorsOperation.swift */; };
+		A5020B111D3900800028CD1D /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5020B101D3900800028CD1D /* Doors.swift */; };
+		A5020B141D3901C60028CD1D /* OpenDoorsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */; };
+		A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535715F1D38DDF900634F29 /* StoryViewController.swift */; };
+		A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571611D38DE3F00634F29 /* BuildingViewController.swift */; };
+		A53571641D38DE8A00634F29 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571631D38DE8A00634F29 /* Story.swift */; };
+		A53571661D38DEC700634F29 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571651D38DEC700634F29 /* Building.swift */; };
+		A53571681D38DF0700634F29 /* Elevator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571671D38DF0700634F29 /* Elevator.swift */; };
 		A5E8BC001D36B688005A4317 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BBFF1D36B688005A4317 /* AppDelegate.swift */; };
 		A5E8BC021D36B688005A4317 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC011D36B688005A4317 /* StoriesViewController.swift */; };
 		A5E8BC051D36B688005A4317 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E8BC031D36B688005A4317 /* Main.storyboard */; };
@@ -36,6 +46,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5020B0A1D38F6810028CD1D /* ElevatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorController.swift; sourceTree = "<group>"; };
+		A5020B0C1D38F7360028CD1D /* MoveOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveOperation.swift; sourceTree = "<group>"; };
+		A5020B0E1D38FA2A0028CD1D /* CloseDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseDoorsOperation.swift; sourceTree = "<group>"; };
+		A5020B101D3900800028CD1D /* Doors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
+		A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDoorsOperation.swift; sourceTree = "<group>"; };
+		A535715F1D38DDF900634F29 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		A53571611D38DE3F00634F29 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
+		A53571631D38DE8A00634F29 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		A53571651D38DEC700634F29 /* Building.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		A53571671D38DF0700634F29 /* Elevator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elevator.swift; sourceTree = "<group>"; };
 		A5E8BBFC1D36B688005A4317 /* Elevator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elevator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E8BBFF1D36B688005A4317 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E8BC011D36B688005A4317 /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +98,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5020B121D3901B30028CD1D /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				A5020B0C1D38F7360028CD1D /* MoveOperation.swift */,
+				A5020B0E1D38FA2A0028CD1D /* CloseDoorsOperation.swift */,
+				A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
+		A5020B151D39023F0028CD1D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A53571631D38DE8A00634F29 /* Story.swift */,
+				A53571651D38DEC700634F29 /* Building.swift */,
+				A53571671D38DF0700634F29 /* Elevator.swift */,
+				A5020B101D3900800028CD1D /* Doors.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A5020B161D39025A0028CD1D /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5020B0A1D38F6810028CD1D /* ElevatorController.swift */,
+				A5020B121D3901B30028CD1D /* Operations */,
+			);
+			name = "Model Controller";
+			sourceTree = "<group>";
+		};
+		A5020B171D3902BE0028CD1D /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5E8BC011D36B688005A4317 /* StoriesViewController.swift */,
+				A535715F1D38DDF900634F29 /* StoryViewController.swift */,
+				A53571611D38DE3F00634F29 /* BuildingViewController.swift */,
+				A5E8BC2F1D36C077005A4317 /* ElevatorViewController.swift */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
 		A5E8BBF31D36B688005A4317 = {
 			isa = PBXGroup;
 			children = (
@@ -102,13 +163,14 @@
 			isa = PBXGroup;
 			children = (
 				A5E8BBFF1D36B688005A4317 /* AppDelegate.swift */,
-				A5E8BC011D36B688005A4317 /* StoriesViewController.swift */,
+				A5020B171D3902BE0028CD1D /* View Controller */,
 				A5E8BC031D36B688005A4317 /* Main.storyboard */,
 				A5E8BC061D36B688005A4317 /* Assets.xcassets */,
 				A5E8BC081D36B688005A4317 /* LaunchScreen.storyboard */,
 				A5E8BC0B1D36B688005A4317 /* Info.plist */,
 				A5E8BC2D1D36BE3C005A4317 /* App.swift */,
-				A5E8BC2F1D36C077005A4317 /* ElevatorViewController.swift */,
+				A5020B161D39025A0028CD1D /* Model Controller */,
+				A5020B151D39023F0028CD1D /* Model */,
 			);
 			path = Elevator;
 			sourceTree = "<group>";
@@ -141,6 +203,7 @@
 				A5E8BBF81D36B688005A4317 /* Sources */,
 				A5E8BBF91D36B688005A4317 /* Frameworks */,
 				A5E8BBFA1D36B688005A4317 /* Resources */,
+				A53571691D38DFDB00634F29 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -258,15 +321,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A53571691D38DFDB00634F29 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n\tswiftlint\nelse\n\techo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A5E8BBF81D36B688005A4317 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53571641D38DE8A00634F29 /* Story.swift in Sources */,
+				A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */,
+				A5020B0D1D38F7360028CD1D /* MoveOperation.swift in Sources */,
+				A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */,
 				A5E8BC301D36C077005A4317 /* ElevatorViewController.swift in Sources */,
+				A5020B141D3901C60028CD1D /* OpenDoorsOperation.swift in Sources */,
 				A5E8BC2E1D36BE3C005A4317 /* App.swift in Sources */,
+				A5020B0B1D38F6810028CD1D /* ElevatorController.swift in Sources */,
+				A5020B111D3900800028CD1D /* Doors.swift in Sources */,
+				A5020B0F1D38FA2A0028CD1D /* CloseDoorsOperation.swift in Sources */,
 				A5E8BC021D36B688005A4317 /* StoriesViewController.swift in Sources */,
 				A5E8BC001D36B688005A4317 /* AppDelegate.swift in Sources */,
+				A53571661D38DEC700634F29 /* Building.swift in Sources */,
+				A53571681D38DF0700634F29 /* Elevator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +589,7 @@
 				A5E8BC261D36B688005A4317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5E8BC271D36B688005A4317 /* Build configuration list for PBXNativeTarget "ElevatorTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +598,7 @@
 				A5E8BC291D36B688005A4317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5E8BC2A1D36B688005A4317 /* Build configuration list for PBXNativeTarget "ElevatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +607,7 @@
 				A5E8BC2C1D36B688005A4317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
