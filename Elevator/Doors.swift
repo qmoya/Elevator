@@ -1,5 +1,5 @@
 // into own object to avoid namespaces in state
-final class Doors {
+public final class Doors {
 	enum State {
 		case Opening
 		case Closing
@@ -7,5 +7,11 @@ final class Doors {
 		case Closed
 	}
 
-	var state = State.Closed
+	var state = State.Closed {
+		didSet {
+			print(state)
+		}
+	}
+
+	var didSetState: () -> () = {}
 }

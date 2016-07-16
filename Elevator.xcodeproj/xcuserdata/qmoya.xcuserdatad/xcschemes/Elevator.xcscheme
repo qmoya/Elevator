@@ -32,6 +32,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A5DE857F1D3A42EF0052730D"
+               BuildableName = "ElevatorKitTests.xctest"
+               BlueprintName = "ElevatorKitTests"
+               ReferencedContainer = "container:Elevator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "A5E8BC0F1D36B688005A4317"
                BuildableName = "ElevatorTests.xctest"
                BlueprintName = "ElevatorTests"
@@ -39,7 +49,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A5E8BC1A1D36B688005A4317"

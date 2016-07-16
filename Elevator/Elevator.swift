@@ -1,27 +1,49 @@
 import Foundation
 
-typealias Level = Int
+public final class Elevator {
 
-final class Elevator {
-
-	enum State {
-		case Stopped(Level)
-		case Moving(Level)
+	internal enum State {
+		case Stopped(Story)
+		case Moving(Story)
 	}
 
-	let doors = Doors()
+	internal var history = [State]()
 
-	var state = State.Stopped(0)
-
-	// to unwrap the current level without having to switch all the time
-	var currentLevel: Level {
-		var level: Int
-		switch state {
-		case .Stopped(let l):
-			level = l
-		case .Moving(let l):
-			level = l
+	internal var state: State {
+		didSet {
+			history.append(state)
 		}
-		return level
+	}
+
+	// TODO: does the current floor actually belong to the elevator?
+	// to unwrap the current level without having to switch all the time
+	var currentStory: Story {
+		var story: Story
+		switch state {
+		case .Stopped(let s):
+			story = s
+		case .Moving(let s):
+			story = s
+		}
+		return story
+	}
+
+	public init(story: Story) {
+		state = .Stopped(story)
+	}
+}
+
+extension Elevator.State: Equatable {}
+
+// MARK: Equatable
+
+func ==(lhs: Elevator.State, rhs: Elevator.State) -> Bool {
+	switch (lhs, rhs) {
+	case (.Stopped(let leftStory), .Stopped(let rightStory)):
+		return leftStory == rightStory
+	case (.Moving(let leftStory), .Moving(let rightStory)):
+		return leftStory == rightStory
+	default:
+		return false
 	}
 }

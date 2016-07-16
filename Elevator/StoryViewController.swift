@@ -1,15 +1,30 @@
 import UIKit
+import ElevatorKit
 
-class StoryViewController: UIViewController {
+final class StoryViewController: UIViewController {
+
+	var story: Story? {
+		didSet {
+			navigationItem.title = story?.name
+		}
+	}
+
+	var didTapEnter: () -> () = {}
+
+	var elevatorController: ElevatorController?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Enter", style: .Plain, target: self, action: #selector(enter))
 
-		// Do any additional setup after loading the view.
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	func enter(sender: AnyObject) {
+		didTapEnter()
+	}
+
+	@IBAction func call(sender: AnyObject) {
+		print("elevator called on the \(story?.name)")
+		elevatorController?.call(from: self.story!)
 	}
 }

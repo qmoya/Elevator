@@ -1,18 +1,28 @@
 import Foundation
 
-final class ElevatorController {
-	let elevator: Elevator
+public final class ElevatorController {
+	public let elevator: Elevator
 
-	init(elevator: Elevator) {
+	let building: Building
+
+	public init(elevator: Elevator, building: Building) {
 		self.elevator = elevator
+		self.building = building
 	}
 
 	let operationQueue = NSOperationQueue()
 
-	func call(from: Level) {
-		let closeDoors = CloseDoorsOperation(elevator: elevator)
-		let move = MoveOperation(elevator: elevator, destination: from)
+	public func call(from story: Story) {
+		if story == elevator.currentStory && story.doors.state == .Open {
+			return
+		}
+		let closeDoors = CloseDoorsOperation(doors: story.doors)
+		let move = MoveOperation(elevator: self.elevator, destination: story, building: building)
 		move.addDependency(closeDoors)
+		let openDoors = OpenDoorsOperation(doors: story.doors)
+		openDoors.addDependency(move)
+		operationQueue.addOperation(closeDoors)
 		operationQueue.addOperation(move)
+		operationQueue.addOperation(openDoors)
 	}
 }

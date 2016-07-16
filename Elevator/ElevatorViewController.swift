@@ -1,10 +1,12 @@
 import UIKit
+import ElevatorKit
 
 class ElevatorViewController: UIViewController {
+	var elevator: Elevator?
 
-	var didTapShowStories: () -> () = {}
+	var didTapExit: () -> () = {}
 
-	@IBAction func showStories(sender: AnyObject) {
-		didTapShowStories()
+	@IBAction func exit(sender: AnyObject) {
+		didTapExit()
 	}
 }

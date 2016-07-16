@@ -1,15 +1,15 @@
 import Foundation
 
 class OpenDoorsOperation: NSOperation {
-	let elevator: Elevator
+	let doors: Doors
 
-	init(elevator: Elevator) {
-		self.elevator = elevator
+	init(doors: Doors) {
+		self.doors = doors
 	}
 
 	override func main() {
-		elevator.doors.state = .Opening
-		NSThread.sleepForTimeInterval(5)
-		elevator.doors.state = .Open
+		doors.state = .Opening
+		NSThread.sleepForTimeInterval(0.1)
+		doors.state = .Open
 	}
 }
