@@ -10,7 +10,7 @@ class ElevatorControllerSpecs: QuickSpec {
 			let elevatorController = ElevatorController(cabin: cabin, dataSource: dataSource)
 
 			it("should have three door controllers") {
-				expect(elevatorController.doorControllers.count).to(equal(3))
+				expect(elevatorController.floorControllers.count).to(equal(3))
 			}
 
 			it("should be the delegate of the cabin") {

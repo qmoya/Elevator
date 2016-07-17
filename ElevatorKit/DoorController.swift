@@ -1,21 +1,21 @@
-protocol DoorControllerDelegate {
-	func doorControllerDidCall(doorController: DoorController)
+protocol FloorControllerDelegate {
+	func floorControllerDidCall(floorController: FloorController)
 }
 
-protocol DoorControllerDataSource {
-	func displayedTextForDoorController(doorController: DoorController) -> String
+protocol FloorControllerDataSource {
+	func displayedTextForFloorController(floorController: FloorController) -> String
 }
 
-internal class DoorController {
+internal class FloorController {
 	let doors: Doors
 
-	let delegate: DoorControllerDelegate
+	let delegate: FloorControllerDelegate
 
-	let dataSource: DoorControllerDataSource
+	let dataSource: FloorControllerDataSource
 
 	let externalPanel: ExternalPanel
 
-	init(doors: Doors, panel: ExternalPanel, delegate: DoorControllerDelegate, dataSource: DoorControllerDataSource) {
+	init(doors: Doors, panel: ExternalPanel, delegate: FloorControllerDelegate, dataSource: FloorControllerDataSource) {
 		self.doors = doors
 		self.delegate = delegate
 		self.dataSource = dataSource
@@ -24,12 +24,12 @@ internal class DoorController {
 	}
 
 	func reloadData() {
-		displayedText = dataSource.displayedTextForDoorController(self)
+		externalPanel.displayedText = dataSource.displayedTextForFloorController(self)
 	}
 }
 
-extension DoorController: ExternalPanelDelegate {
+extension FloorController: ExternalPanelDelegate {
 	func externalPanelDidCall(externalPanel: ExternalPanel) {
-		delegate.doorControllerDidCall(self)
+		delegate.floorControllerDidCall(self)
 	}
 }

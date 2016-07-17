@@ -1,8 +1,8 @@
 public typealias Level = Int
 
 public protocol ElevatorControllerDataSource {
-	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String
 	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int
+	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String
 	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors
 	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel
 }
@@ -16,39 +16,39 @@ public final class ElevatorController {
 		self.cabin = cabin
 		self.dataSource = dataSource
 		cabin.delegate = self
-		loadDoorControllers()
+		loadFloorControllers()
 	}
 
-	internal var doorControllers = [DoorController]()
+	internal var floorControllers = [FloorController]()
 
 	internal let operationQueue = NSOperationQueue()
 
 	internal func call(from level: Level) {
 		let move = MoveOperation(cabin: self.cabin, destination: level)
-		for doors in doorControllers.map({ $0.doors }) {
+		for doors in floorControllers.map({ $0.doors }) {
 			let close = CloseDoorsOperation(doors: doors)
 			operationQueue.addOperation(close)
 			move.addDependency(close)
 		}
 		operationQueue.addOperation(move)
-		let openDoors = OpenDoorsOperation(doors: doorControllers[level].doors)
+		let openDoors = OpenDoorsOperation(doors: floorControllers[level].doors)
 		openDoors.addDependency(move)
 		operationQueue.addOperation(openDoors)
 	}
 
-	private func loadDoorControllers() {
+	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
 			let doors = dataSource.elevatorController(self, doorsForLevel: level)
 			let panel = dataSource.elevatorController(self, panelForLevel: level)
-			let doorController = DoorController(doors: doors, panel: panel, delegate: self, dataSource: self)
-			doorControllers.append(doorController)
+			let floorController = FloorController(doors: doors, panel: panel, delegate: self, dataSource: self)
+			floorControllers.append(floorController)
 		}
 	}
 }
 
-extension ElevatorController: DoorControllerDelegate {
-	func doorControllerDidCall(doorController: DoorController) {
-		guard let level = doorControllers.indexOf({$0 === doorController}) else { return }
+extension ElevatorController: FloorControllerDelegate {
+	func floorControllerDidCall(floorController: FloorController) {
+		guard let level = floorControllers.indexOf({$0 === floorController}) else { return }
 		call(from: level)
 	}
 }
@@ -56,14 +56,14 @@ extension ElevatorController: DoorControllerDelegate {
 extension ElevatorController: CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin) {
 		print(cabin.state)
-		for controller in doorControllers {
+		for controller in floorControllers {
 			controller.reloadData()
 		}
 	}
 }
 
-extension ElevatorController: DoorControllerDataSource {
-	func displayedTextForDoorController(doorController: DoorController) -> String {
+extension ElevatorController: FloorControllerDataSource {
+	func displayedTextForFloorController(floorController: FloorController) -> String {
 		return dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
 	}
 }
