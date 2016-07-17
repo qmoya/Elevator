@@ -3,10 +3,10 @@ protocol DoorControllerDelegate {
 }
 
 protocol DoorControllerDataSource {
-	func displayedTextForDoorController(doorController: DoorController) -> String 
+	func displayedTextForDoorController(doorController: DoorController) -> String
 }
 
-class DoorController {
+internal class DoorController {
 	let doors: Doors
 
 	var displayedText = ""

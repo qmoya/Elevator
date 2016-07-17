@@ -12,6 +12,7 @@
 		A552497F1D3A5847001CE085 /* OperationQueueSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552497E1D3A5847001CE085 /* OperationQueueSpecs.swift */; };
 		A55249811D3A5881001CE085 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55249801D3A5881001CE085 /* OperationQueue.swift */; };
 		A5BBC6FA1D3A5D9300181D27 /* ElevatorControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */; };
+		A5BBC6FC1D3B8B3B00181D27 /* CabinSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */; };
 		A5C2244A1D3AC64B00F68507 /* DoorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C224491D3AC64B00F68507 /* DoorController.swift */; };
 		A5C2244B1D3ACA8800F68507 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571631D38DE8A00634F29 /* Story.swift */; };
 		A5C2244C1D3ACD4900F68507 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571651D38DEC700634F29 /* Building.swift */; };
@@ -119,6 +120,7 @@
 		A552497E1D3A5847001CE085 /* OperationQueueSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueSpecs.swift; sourceTree = "<group>"; };
 		A55249801D3A5881001CE085 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorControllerSpecs.swift; sourceTree = "<group>"; };
+		A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinSpecs.swift; sourceTree = "<group>"; };
 		A5C224491D3AC64B00F68507 /* DoorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorController.swift; sourceTree = "<group>"; };
 		A5C2244D1D3AEC4B00F68507 /* ExternalPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPanel.swift; sourceTree = "<group>"; };
 		A5DE85771D3A42EF0052730D /* ElevatorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ElevatorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +253,7 @@
 				A5DE85891D3A42EF0052730D /* Info.plist */,
 				A552497E1D3A5847001CE085 /* OperationQueueSpecs.swift */,
 				A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */,
+				A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */,
 			);
 			path = ElevatorKitTests;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			files = (
 				A5DE85881D3A42EF0052730D /* ElevatorKitTests.swift in Sources */,
 				A552497F1D3A5847001CE085 /* OperationQueueSpecs.swift in Sources */,
+				A5BBC6FC1D3B8B3B00181D27 /* CabinSpecs.swift in Sources */,
 				A5BBC6FA1D3A5D9300181D27 /* ElevatorControllerSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

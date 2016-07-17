@@ -2,7 +2,7 @@ import ElevatorKit
 
 struct Building {
 	let stories: [Story]
-	let cabin = Cabin()
+	let cabin = Cabin(level: 3)
 
 	func storyAboveStory(story: Story) -> Story? {
 		guard let index = stories.indexOf({$0 === story}) else { return nil }

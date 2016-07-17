@@ -10,20 +10,20 @@ public protocol ElevatorControllerDataSource {
 public final class ElevatorController {
 	public let cabin: Cabin
 
-	var doorControllers = [DoorController]()
+	internal var doorControllers = [DoorController]()
+
+	public let dataSource: ElevatorControllerDataSource
+
+	internal let operationQueue = NSOperationQueue()
 
 	public init(cabin: Cabin, dataSource: ElevatorControllerDataSource) {
 		self.cabin = cabin
 		self.dataSource = dataSource
 		cabin.delegate = self
-		reloadData()
+		loadDoorControllers()
 	}
 
-	var dataSource: ElevatorControllerDataSource
-
-	let operationQueue = NSOperationQueue()
-
-	func reloadData() {
+	func loadDoorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
 			let doors = dataSource.elevatorController(self, doorsForLevel: level)
 			let panel = dataSource.elevatorController(self, panelForLevel: level)
@@ -31,11 +31,8 @@ public final class ElevatorController {
 			doorControllers.append(doorController)
 		}
 	}
-}
 
-extension ElevatorController: DoorControllerDelegate {
-	func doorControllerDidCall(doorController: DoorController) {
-		guard let level = doorControllers.indexOf({$0 === doorController}) else { return }
+	internal func call(from level: Level) {
 		let move = MoveOperation(cabin: self.cabin, destination: level)
 		for doors in doorControllers.map({ $0.doors }) {
 			let close = CloseDoorsOperation(doors: doors)
@@ -49,12 +46,23 @@ extension ElevatorController: DoorControllerDelegate {
 	}
 }
 
+extension ElevatorController: DoorControllerDelegate {
+	func doorControllerDidCall(doorController: DoorController) {
+		guard let level = doorControllers.indexOf({$0 === doorController}) else { return }
+		call(from: level)
+	}
+}
+
 extension ElevatorController: CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin) {
 		print(cabin.state)
 		for controller in doorControllers {
 			controller.reloadData()
 		}
+	}
+
+	func cabinShouldMoveToLevel(level: Level) -> Bool {
+		return level < dataSource.numberOfLevelsForElevatorController(self)
 	}
 }
 

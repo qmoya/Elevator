@@ -1,5 +1,6 @@
-protocol CabinDelegate {
+internal protocol CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin)
+	func cabinShouldMoveToLevel(level: Level) -> Bool
 }
 
 public final class Cabin {
@@ -9,31 +10,38 @@ public final class Cabin {
 		case Moving(Level)
 	}
 
-	internal var history = [State]()
+	internal var previousState = [State]()
 
 	internal var delegate: CabinDelegate?
 
-	internal var state: State = .Stopped(0) {
+	internal var state: State {
+		willSet {
+
+		}
 		didSet {
-			history.append(state)
+			previousState.append(oldValue)
 			delegate?.cabinDidChangeState(self)
 		}
 	}
 
-	// TODO: does the current floor actually belong to the elevator?
-	// to unwrap the current level without having to switch all the time
 	internal var currentLevel: Level {
-		var story: Level
-		switch state {
-		case .Stopped(let s):
-			story = s
-		case .Moving(let s):
-			story = s
-		}
-		return story
+		return Cabin.levelForState(state)
 	}
 
-	public init() {}
+	private class func levelForState(state: State) -> Level {
+		var level: Level
+		switch state {
+		case .Stopped(let s):
+			level = s
+		case .Moving(let s):
+			level = s
+		}
+		return level
+	}
+
+	public init(level: Level) {
+		self.state = .Stopped(level)
+	}
 }
 
 extension Cabin.State: Equatable {}
