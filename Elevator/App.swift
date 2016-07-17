@@ -22,7 +22,7 @@ final class App {
 
 		self.navigationController = navigationController
 
-		elevatorController = ElevatorController(cabin: building.cabin, dataSource: self)
+		elevatorController = ElevatorController(dataSource: self)
 
 		buildingViewController.initialStoryViewController = initialStoryViewController
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
@@ -60,7 +60,6 @@ final class App {
 		guard let navigationController = storyboard.instantiateViewControllerWithIdentifier("ElevatorNavigationControllerStoryboardIdentifier") as? UINavigationController,
 			elevatorViewController = navigationController.topViewController as? ElevatorViewController
 			else { return }
-		elevatorViewController.cabin = elevatorController.cabin
 		elevatorViewController.didTapExit = exitElevator
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
@@ -72,18 +71,26 @@ final class App {
 
 extension App: ElevatorControllerDataSource {
 	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
-		return building.stories[level].doors
+		return building.stories[level].doors  // FIXME: Demeter
 	}
 
 	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String {
-		return building.stories[level].abbreviation
+		return building.stories[level].abbreviation // FIXME: Demeter
 	}
 
 	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel {
-		return building.stories[level].panel
+		return building.stories[level].panel // FIXME: Demeter
 	}
 
 	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int {
 		return building.stories.count
+	}
+
+	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin {
+		return building.cabin
+	}
+
+	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel {
+		return building.cabinPanel
 	}
 }

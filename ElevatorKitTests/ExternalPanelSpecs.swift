@@ -20,6 +20,12 @@ class ExternalPanelSpecs: QuickSpec {
 				panel.reloadData()
 				expect(panel.displayedText).to(equal("works"))
 			}
+			
+			it("shouldn't display anything without a data source") {
+				let panel = ExternalPanel()
+				panel.reloadData()
+				expect(panel.displayedText).to(equal(""))
+			}
 		}
 	}
 }

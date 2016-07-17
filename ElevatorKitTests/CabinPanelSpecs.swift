@@ -20,6 +20,12 @@ class CabinPanelSpecs: QuickSpec {
 				panel.reloadData()
 				expect(panel.numberOfLevels).to(equal(8))
 			}
+
+			it("shouldn't display anything without a data source") {
+				let panel = CabinPanel()
+				panel.reloadData()
+				expect(panel.displayedText).to(equal(""))
+			}
 		}
 	}
 }
