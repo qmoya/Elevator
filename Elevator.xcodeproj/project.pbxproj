@@ -114,15 +114,15 @@
 
 /* Begin PBXFileReference section */
 		A5020B0A1D38F6810028CD1D /* ElevatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorController.swift; sourceTree = "<group>"; };
-		A5020B0C1D38F7360028CD1D /* MoveOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveOperation.swift; sourceTree = "<group>"; };
-		A5020B0E1D38FA2A0028CD1D /* CloseDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseDoorsOperation.swift; sourceTree = "<group>"; };
-		A5020B101D3900800028CD1D /* Doors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Doors.swift; path = ../Elevator/Doors.swift; sourceTree = "<group>"; };
-		A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDoorsOperation.swift; sourceTree = "<group>"; };
+		A5020B0C1D38F7360028CD1D /* MoveOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveOperation.swift; path = ../ElevatorKit/MoveOperation.swift; sourceTree = "<group>"; };
+		A5020B0E1D38FA2A0028CD1D /* CloseDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloseDoorsOperation.swift; path = ../ElevatorKit/CloseDoorsOperation.swift; sourceTree = "<group>"; };
+		A5020B101D3900800028CD1D /* Doors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
+		A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenDoorsOperation.swift; path = ../ElevatorKit/OpenDoorsOperation.swift; sourceTree = "<group>"; };
 		A535715F1D38DDF900634F29 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		A53571611D38DE3F00634F29 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
 		A53571631D38DE8A00634F29 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		A53571651D38DEC700634F29 /* Building.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
-		A53571671D38DF0700634F29 /* Cabin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cabin.swift; path = ../Elevator/Cabin.swift; sourceTree = "<group>"; };
+		A53571671D38DF0700634F29 /* Cabin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cabin.swift; sourceTree = "<group>"; };
 		A57C16031D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDoorsOperationSpecs.swift; sourceTree = "<group>"; };
 		A57C16051D3BB0B500AE124A /* ExternalPanelSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPanelSpecs.swift; sourceTree = "<group>"; };
 		A57C16071D3BC24D00AE124A /* CabinPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinPanel.swift; sourceTree = "<group>"; };
