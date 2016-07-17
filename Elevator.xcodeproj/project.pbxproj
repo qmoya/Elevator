@@ -11,6 +11,8 @@
 		A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571611D38DE3F00634F29 /* BuildingViewController.swift */; };
 		A57C16041D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16031D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift */; };
 		A57C16061D3BB0B500AE124A /* ExternalPanelSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16051D3BB0B500AE124A /* ExternalPanelSpecs.swift */; };
+		A57C16081D3BC24D00AE124A /* CabinPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16071D3BC24D00AE124A /* CabinPanel.swift */; };
+		A57C160A1D3BC44800AE124A /* CabinPanelSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16091D3BC44800AE124A /* CabinPanelSpecs.swift */; };
 		A5BBC6FA1D3A5D9300181D27 /* ElevatorControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */; };
 		A5BBC6FC1D3B8B3B00181D27 /* CabinSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */; };
 		A5BBC6FE1D3BA11D00181D27 /* MoveOperationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FD1D3BA11D00181D27 /* MoveOperationSpecs.swift */; };
@@ -120,6 +122,8 @@
 		A53571671D38DF0700634F29 /* Cabin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cabin.swift; path = ../Elevator/Cabin.swift; sourceTree = "<group>"; };
 		A57C16031D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDoorsOperationSpecs.swift; sourceTree = "<group>"; };
 		A57C16051D3BB0B500AE124A /* ExternalPanelSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPanelSpecs.swift; sourceTree = "<group>"; };
+		A57C16071D3BC24D00AE124A /* CabinPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinPanel.swift; sourceTree = "<group>"; };
+		A57C16091D3BC44800AE124A /* CabinPanelSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinPanelSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorControllerSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6FD1D3BA11D00181D27 /* MoveOperationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveOperationSpecs.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				A5DE857B1D3A42EF0052730D /* Info.plist */,
 				A5C224491D3AC64B00F68507 /* DoorController.swift */,
 				A5C2244D1D3AEC4B00F68507 /* ExternalPanel.swift */,
+				A57C16071D3BC24D00AE124A /* CabinPanel.swift */,
 			);
 			path = ElevatorKit;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				A5BBC6FF1D3BA78D00181D27 /* CloseDoorOperationSpecs.swift */,
 				A57C16031D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift */,
 				A57C16051D3BB0B500AE124A /* ExternalPanelSpecs.swift */,
+				A57C16091D3BC44800AE124A /* CabinPanelSpecs.swift */,
 			);
 			path = ElevatorKitTests;
 			sourceTree = "<group>";
@@ -550,6 +556,7 @@
 				A5DE859A1D3A432A0052730D /* MoveOperation.swift in Sources */,
 				A5DE85981D3A43060052730D /* Doors.swift in Sources */,
 				A5C2244E1D3AEC4B00F68507 /* ExternalPanel.swift in Sources */,
+				A57C16081D3BC24D00AE124A /* CabinPanel.swift in Sources */,
 				A5DE859B1D3A432A0052730D /* CloseDoorsOperation.swift in Sources */,
 				A5DE859C1D3A432A0052730D /* OpenDoorsOperation.swift in Sources */,
 				A5DE85971D3A43060052730D /* Cabin.swift in Sources */,
@@ -563,6 +570,7 @@
 				A57C16041D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift in Sources */,
 				A5BBC7001D3BA78D00181D27 /* CloseDoorOperationSpecs.swift in Sources */,
 				A57C16061D3BB0B500AE124A /* ExternalPanelSpecs.swift in Sources */,
+				A57C160A1D3BC44800AE124A /* CabinPanelSpecs.swift in Sources */,
 				A5BBC6FC1D3B8B3B00181D27 /* CabinSpecs.swift in Sources */,
 				A5BBC6FE1D3BA11D00181D27 /* MoveOperationSpecs.swift in Sources */,
 				A5BBC6FA1D3A5D9300181D27 /* ElevatorControllerSpecs.swift in Sources */,

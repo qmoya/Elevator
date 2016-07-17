@@ -4,18 +4,31 @@ internal protocol CabinDelegate {
 
 public final class Cabin {
 
+	public init(level: Level) {
+		self.state = .Stopped(level)
+	}
+
 	internal enum State {
 		case Stopped(Level)
 		case Moving(Level)
+
+		var level: Level {
+			switch self {
+			case .Stopped(let s):
+				return s
+			case .Moving(let s):
+				return s
+			}
+		}
 	}
 
-	internal var previousState = [State]()
+	internal var previousStates = [State]()
 
 	internal var delegate: CabinDelegate?
 
 	internal var state: State {
 		didSet {
-			previousState.append(oldValue)
+			previousStates.append(oldValue)
 			if state != oldValue {
 				delegate?.cabinDidChangeState(self)
 			}
@@ -23,22 +36,7 @@ public final class Cabin {
 	}
 
 	internal var currentLevel: Level {
-		return Cabin.levelForState(state)
-	}
-
-	private class func levelForState(state: State) -> Level {
-		var level: Level
-		switch state {
-		case .Stopped(let s):
-			level = s
-		case .Moving(let s):
-			level = s
-		}
-		return level
-	}
-
-	public init(level: Level) {
-		self.state = .Stopped(level)
+		return state.level
 	}
 }
 

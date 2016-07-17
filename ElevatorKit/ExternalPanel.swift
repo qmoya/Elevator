@@ -2,14 +2,26 @@ internal protocol ExternalPanelDelegate {
 	func externalPanelDidCall(externalPanel: ExternalPanel)
 }
 
+internal protocol ExternalPanelDataSource {
+	func displayedTextForExternalPanel(externalPanel: ExternalPanel) -> String
+}
+
 public final class ExternalPanel {
-	internal var delegate: ExternalPanelDelegate?
 
 	public func call() {
 		delegate?.externalPanelDidCall(self)
 	}
 
-	var displayedText = ""
+	public var displayedText = ""
 
 	public init() {}
+
+	internal var delegate: ExternalPanelDelegate?
+
+	internal var dataSource: ExternalPanelDataSource?
+
+	internal func reloadData() {
+		guard let dataSource = dataSource else { return }
+		displayedText = dataSource.displayedTextForExternalPanel(self)
+	}
 }

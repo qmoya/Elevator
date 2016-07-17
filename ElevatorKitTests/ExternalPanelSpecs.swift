@@ -4,13 +4,21 @@ import Nimble
 
 class ExternalPanelSpecs: QuickSpec {
 	override func spec() {
-		describe("close doors operation") {
+		describe("external panel") {
 			it("should call the delegate when the elevator is called") {
 				let panel = ExternalPanel()
 				let delegate = TestExternalPanelDelegate()
 				panel.delegate = delegate
 				panel.call()
 				expect(delegate.externalPanelDidCallWasCalled).to(beTrue())
+			}
+
+			it("should set the right text") {
+				let panel = ExternalPanel()
+				let dataSource = TestExternalPanelDataSource(displayedText: "works")
+				panel.dataSource = dataSource
+				panel.reloadData()
+				expect(panel.displayedText).to(equal("works"))
 			}
 		}
 	}
@@ -20,5 +28,17 @@ class TestExternalPanelDelegate: ExternalPanelDelegate {
 	var externalPanelDidCallWasCalled = false
 	func externalPanelDidCall(externalPanel: ExternalPanel) {
 		externalPanelDidCallWasCalled = true
+	}
+}
+
+class TestExternalPanelDataSource: ExternalPanelDataSource {
+	let displayedText: String
+
+	init(displayedText: String) {
+		self.displayedText = displayedText
+	}
+
+	func displayedTextForExternalPanel(externalPanel: ExternalPanel) -> String {
+		return displayedText
 	}
 }

@@ -10,6 +10,10 @@ public final class Doors {
 		case Closed
 	}
 
+	public init(state: State) {
+		self.state = state
+	}
+
 	internal var delegate: DoorsDelegate?
 
 	internal var previousStates = [State]()
@@ -21,9 +25,5 @@ public final class Doors {
 				delegate?.doorsDidChangeState(self)
 			}
 		}
-	}
-
-	public init(state: State) {
-		self.state = state
 	}
 }
