@@ -9,8 +9,6 @@ protocol DoorControllerDataSource {
 internal class DoorController {
 	let doors: Doors
 
-	var displayedText = ""
-
 	let delegate: DoorControllerDelegate
 
 	let dataSource: DoorControllerDataSource

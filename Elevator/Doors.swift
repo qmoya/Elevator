@@ -1,18 +1,29 @@
-// into own object to avoid namespaces in state
+protocol DoorsDelegate {
+	func doorsDidChangeState(doors: Doors)
+}
+
 public final class Doors {
-	enum State {
+	public enum State {
 		case Opening
-		case Closing
 		case Open
+		case Closing
 		case Closed
 	}
 
-	var state = State.Closed {
+	internal var delegate: DoorsDelegate?
+
+	internal var previousStates = [State]()
+
+	internal var state: State {
 		didSet {
-			print(state)
+			previousStates.append(oldValue)
+			if state != oldValue {
+				delegate?.doorsDidChangeState(self)
+			}
 		}
 	}
 
-	public init() {}
+	public init(state: State) {
+		self.state = state
+	}
 }
-

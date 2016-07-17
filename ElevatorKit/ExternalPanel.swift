@@ -9,5 +9,7 @@ public final class ExternalPanel {
 		delegate?.externalPanelDidCall(self)
 	}
 
+	var displayedText = ""
+
 	public init() {}
 }
