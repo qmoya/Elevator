@@ -68,11 +68,3 @@ class CabinSpecs: QuickSpec {
 		}
 	}
 }
-
-class TestCabinDelegate: CabinDelegate {
-	var cabinDidChangeStateWasCalled = false
-
-	func cabinDidChangeState(cabin: Cabin) {
-		cabinDidChangeStateWasCalled = true
-	}
-}

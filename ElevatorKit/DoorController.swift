@@ -6,7 +6,7 @@ protocol FloorControllerDataSource {
 	func displayedTextForFloorController(floorController: FloorController) -> String
 }
 
-internal class FloorController {
+internal final class FloorController {
 	let doors: Doors
 
 	let delegate: FloorControllerDelegate

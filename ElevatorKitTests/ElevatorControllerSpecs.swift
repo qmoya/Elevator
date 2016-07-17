@@ -5,7 +5,7 @@ import Nimble
 class ElevatorControllerSpecs: QuickSpec {
 	override func spec() {
 		describe("elevator controller") {
-			let dataSource = TestElevatorControllerDataSource()
+			let dataSource = StubElevatorControllerDataSource()
 			let elevatorController = ElevatorController(dataSource: dataSource)
 
 			it("should have three door controllers") {
@@ -29,32 +29,17 @@ class ElevatorControllerSpecs: QuickSpec {
 				let panelDelegate = elevatorController.cabinPanel.delegate as! AnyObject
 				expect(controller).to(beIdenticalTo(panelDelegate))
 			}
+
+			context("janitor mode is on") {
+				let elevatorController = ElevatorController(dataSource: dataSource)
+				try! elevatorController.setMode(.Janitor)
+
+				it("should ignore external calls") {
+					let floorController = FloorController.fakeFloorController()
+					elevatorController.floorControllerDidCall(floorController)
+
+				}
+			}
 		}
-	}
-}
-
-class TestElevatorControllerDataSource: ElevatorControllerDataSource {
-	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
-		return Doors(state: .Closed)
-	}
-
-	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String {
-		return ""
-	}
-
-	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel {
-		return ExternalPanel()
-	}
-
-	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int {
-		return 3
-	}
-
-	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel {
-		return CabinPanel()
-	}
-
-	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin {
-		return Cabin(level: 0)
 	}
 }

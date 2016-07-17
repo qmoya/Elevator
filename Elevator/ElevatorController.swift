@@ -14,6 +14,24 @@ public final class ElevatorController {
 
 	private(set) var cabinPanel: CabinPanel!
 
+	public enum Mode {
+		case Normal
+		case Janitor
+	}
+
+	private(set) var mode: Mode = .Normal
+
+	public func setMode(mode: Mode) throws {
+		if mode == .Janitor && !shouldEnableJanitorMode {
+			return
+		}
+		self.mode = mode
+	}
+
+	private var shouldEnableJanitorMode: Bool {
+		return operationQueue.operationCount == 0
+	}
+
 	public let dataSource: ElevatorControllerDataSource
 
 	public init(dataSource: ElevatorControllerDataSource) {
@@ -85,10 +103,30 @@ extension ElevatorController: CabinPanelDataSource {
 	func displayedTextForCabinPanel(cabinPanel: CabinPanel) -> String {
 		return dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
 	}
+
+	func isJanitorModeEnabledForCabinPanel(cabinPanel: CabinPanel) -> Bool {
+		return mode == .Janitor
+	}
+
+	func isJanitorModeAvailableForCabinPanel(cabinPanel: CabinPanel) -> Bool {
+		return shouldEnableJanitorMode
+	}
 }
 
 extension ElevatorController: CabinPanelDelegate {
 	func cabinPanel(cabinPanel: CabinPanel, didCallLevel level: Level) {
 		call(level)
+	}
+
+	func cabinPanelDidToggleJanitorMode(cabinPanel: CabinPanel) {
+		if mode == .Normal {
+			mode = .Janitor
+			return
+		}
+		mode = .Normal
+	}
+	
+	func cabinPanelShouldToggleJanitorMode(cabinPanel: CabinPanel) -> Bool {
+		return shouldEnableJanitorMode
 	}
 }

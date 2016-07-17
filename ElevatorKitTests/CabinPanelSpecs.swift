@@ -7,7 +7,7 @@ class CabinPanelSpecs: QuickSpec {
 		describe("cabin panel") {
 			it("should call the delegate when a destination is selected") {
 				let panel = CabinPanel()
-				let delegate = TestCabinPanelDelegate()
+				let delegate = MockCabinPanelDelegate()
 				panel.delegate = delegate
 				panel.call(1)
 				expect(delegate.state.level).to(equal(1))
@@ -15,7 +15,8 @@ class CabinPanelSpecs: QuickSpec {
 
 			it("should have the right number of levels") {
 				let panel = CabinPanel()
-				let dataSource = TestCabinPanelDataSource(numberOfLevels: 8, displayedText: "works")
+				let dataSource = StubCabinPanelDataSource()
+				dataSource.numberOfLevels = 8
 				panel.dataSource = dataSource
 				panel.reloadData()
 				expect(panel.numberOfLevels).to(equal(8))
@@ -28,45 +29,4 @@ class CabinPanelSpecs: QuickSpec {
 			}
 		}
 	}
-}
-
-private class TestCabinPanelDelegate: CabinPanelDelegate {
-	enum State {
-		case NotCalled
-		case Called(Level)
-
-		var level: Level? {
-			switch self {
-			case .NotCalled:
-				return nil
-			case .Called(let level):
-				return level
-			}
-		}
-	}
-
-	var state: State = .NotCalled
-
-	func cabinPanel(cabinPanel: CabinPanel, didCallLevel level: Level) {
-		state = .Called(level)
-	}
-}
-
-private class TestCabinPanelDataSource: CabinPanelDataSource {
-	let numberOfLevels: Int
-	let displayedText: String
-
-	init(numberOfLevels: Int, displayedText: String) {
-		self.numberOfLevels = numberOfLevels
-		self.displayedText = displayedText
-	}
-
-	func numberOfLevelsForCabinPanel(cabinPanel: CabinPanel) -> Int {
-		return numberOfLevels
-	}
-
-	func displayedTextForCabinPanel(cabinPanel: CabinPanel) -> String {
-		return displayedText
-	}
-
 }
