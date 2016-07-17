@@ -10,11 +10,7 @@ public protocol ElevatorControllerDataSource {
 public final class ElevatorController {
 	public let cabin: Cabin
 
-	internal var doorControllers = [DoorController]()
-
 	public let dataSource: ElevatorControllerDataSource
-
-	internal let operationQueue = NSOperationQueue()
 
 	public init(cabin: Cabin, dataSource: ElevatorControllerDataSource) {
 		self.cabin = cabin
@@ -23,14 +19,9 @@ public final class ElevatorController {
 		loadDoorControllers()
 	}
 
-	func loadDoorControllers() {
-		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
-			let doors = dataSource.elevatorController(self, doorsForLevel: level)
-			let panel = dataSource.elevatorController(self, panelForLevel: level)
-			let doorController = DoorController(doors: doors, panel: panel, delegate: self, dataSource: self)
-			doorControllers.append(doorController)
-		}
-	}
+	internal var doorControllers = [DoorController]()
+
+	internal let operationQueue = NSOperationQueue()
 
 	internal func call(from level: Level) {
 		let move = MoveOperation(cabin: self.cabin, destination: level)
@@ -43,6 +34,15 @@ public final class ElevatorController {
 		let openDoors = OpenDoorsOperation(doors: doorControllers[level].doors)
 		openDoors.addDependency(move)
 		operationQueue.addOperation(openDoors)
+	}
+
+	private func loadDoorControllers() {
+		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
+			let doors = dataSource.elevatorController(self, doorsForLevel: level)
+			let panel = dataSource.elevatorController(self, panelForLevel: level)
+			let doorController = DoorController(doors: doors, panel: panel, delegate: self, dataSource: self)
+			doorControllers.append(doorController)
+		}
 	}
 }
 
@@ -59,10 +59,6 @@ extension ElevatorController: CabinDelegate {
 		for controller in doorControllers {
 			controller.reloadData()
 		}
-	}
-
-	func cabinShouldMoveToLevel(level: Level) -> Bool {
-		return level < dataSource.numberOfLevelsForElevatorController(self)
 	}
 }
 

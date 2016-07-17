@@ -1,17 +1,18 @@
 import Foundation
 
-class MoveOperation: NSOperation {
-	let cabin: Cabin
+internal class MoveOperation: NSOperation {
+	internal let cabin: Cabin
 
-	let destination: Level
+	internal let destination: Level
 
-	init(cabin: Cabin, destination: Level) {
+	internal init(cabin: Cabin, destination: Level) {
 		self.cabin = cabin
 		self.destination = destination
 	}
 
-	override func main() {
-		for level in cabin.currentLevel...destination {
+	internal override func main() {
+		let delta = cabin.currentLevel < destination ? 1 : -1
+		for level in cabin.currentLevel.stride(to: destination, by: delta) {
 			NSThread.sleepForTimeInterval(0.1)
 			cabin.state = .Moving(level)
 		}

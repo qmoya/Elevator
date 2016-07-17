@@ -5,20 +5,65 @@ import Nimble
 class CabinSpecs: QuickSpec {
 	override func spec() {
 		describe("cabin") {
-			let cabin = Cabin(level: 1)
-
 			it("should be initially stopped at the specified level") {
+				let cabin = Cabin(level: 1)
 				expect(cabin.currentLevel).to(equal(1))
 			}
 
-			context("an invalid level is specified") {
-				let delegate = TestCabinDelegate(numberOfStories: 3)
+			it("should call the right delegate method when state is changed") {
+				let cabin = Cabin(level: 0)
+				let delegate = TestCabinDelegate()
 				cabin.delegate = delegate
-				let invalidLevel = 3
+				cabin.state = .Moving(3)
+				expect(delegate.cabinDidChangeStateWasCalled).to(beTrue())
+			}
 
-				it("should throw an error") {
-					expect {try cabin.state = .Stopped(invalidLevel)}.to(throwError())
+			it("should not the right delegate method when state is changed") {
+				let cabin = Cabin(level: 2)
+				let delegate = TestCabinDelegate()
+				cabin.delegate = delegate
+				cabin.state = .Stopped(2)
+				expect(delegate.cabinDidChangeStateWasCalled).to(beFalse())
+			}
+
+			context("when it’s moving") {
+				let cabin = Cabin(level: 0)
+				cabin.state = .Moving(5)
+
+				it("should have the correct current level") {
+					expect(cabin.currentLevel).to(equal(5))
 				}
+			}
+
+			context("when it’s stopped") {
+				let cabin = Cabin(level: 0)
+				cabin.state = .Stopped(4)
+
+				it("should have the correct current level") {
+					expect(cabin.currentLevel).to(equal(4))
+				}
+			}
+		}
+
+		describe("cabin states") {
+			it("should be different when one is moving and the other one stopped") {
+				expect(Cabin.State.Moving(1)).toNot(equal(Cabin.State.Stopped(1)))
+			}
+
+			it("should be different when both are moving but in different levels") {
+				expect(Cabin.State.Moving(1)).toNot(equal(Cabin.State.Moving(2)))
+			}
+
+			it("should be different when both are stopped but in different levels") {
+				expect(Cabin.State.Stopped(1)).toNot(equal(Cabin.State.Stopped(2)))
+			}
+
+			it("should be different when both are moving in the same levels") {
+				expect(Cabin.State.Moving(1)).to(equal(Cabin.State.Moving(1)))
+			}
+
+			it("should be different when both are moving in the same levels") {
+				expect(Cabin.State.Stopped(1)).to(equal(Cabin.State.Stopped(1)))
 			}
 		}
 	}
@@ -26,16 +71,6 @@ class CabinSpecs: QuickSpec {
 
 class TestCabinDelegate: CabinDelegate {
 	var cabinDidChangeStateWasCalled = false
-
-	let numberOfStories: Int
-
-	init(numberOfStories: Int) {
-		self.numberOfStories = numberOfStories
-	}
-
-	func cabinShouldMoveToLevel(level: Level) -> Bool {
-		return level < numberOfStories
-	}
 
 	func cabinDidChangeState(cabin: Cabin) {
 		cabinDidChangeStateWasCalled = true
