@@ -12,7 +12,8 @@ internal class MoveOperation: NSOperation {
 
 	internal override func main() {
 		let delta = cabin.currentLevel < destination ? 1 : -1
-		for level in cabin.currentLevel.stride(to: destination, by: delta) {
+		let stride = cabin.currentLevel.stride(to: destination, by: delta)
+		for level in stride {
 			NSThread.sleepForTimeInterval(0.1)
 			cabin.state = .Moving(level)
 		}
