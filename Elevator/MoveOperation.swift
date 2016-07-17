@@ -1,23 +1,20 @@
 import Foundation
 
 class MoveOperation: NSOperation {
-	let elevator: Elevator
+	let cabin: Cabin
 
-	let destination: Story
+	let destination: Level
 
-	let building: Building
-
-	init(elevator: Elevator, destination: Story, building: Building) {
-		self.elevator = elevator
+	init(cabin: Cabin, destination: Level) {
+		self.cabin = cabin
 		self.destination = destination
-		self.building = building
 	}
 
 	override func main() {
-		for level in building.storiesBetween(elevator.currentStory, destination: destination) {
+		for level in cabin.currentLevel...destination {
 			NSThread.sleepForTimeInterval(0.1)
-			elevator.state = .Moving(level)
+			cabin.state = .Moving(level)
 		}
-		elevator.state = .Stopped(destination)
+		cabin.state = .Stopped(destination)
 	}
 }

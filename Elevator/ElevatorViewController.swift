@@ -2,7 +2,7 @@ import UIKit
 import ElevatorKit
 
 class ElevatorViewController: UIViewController {
-	var elevator: Elevator?
+	var cabin: Cabin?
 
 	var didTapExit: () -> () = {}
 

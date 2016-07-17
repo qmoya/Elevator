@@ -79,6 +79,6 @@ extension ElevatorController {
 			Story(name: "Third", abbreviation: "3")
 			])
 		let elevator = Elevator(story: building.stories[1])
-		self.init(elevator: elevator, building: building)
+		self.init(cabin: elevator, building: building)
 	}
 }

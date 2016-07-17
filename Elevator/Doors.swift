@@ -13,5 +13,6 @@ public final class Doors {
 		}
 	}
 
-	var didSetState: () -> () = {}
+	public init() {}
 }
+

@@ -13,7 +13,7 @@ final class App {
 		Story(name: "Third", abbreviation: "3")
 	])
 
-	let elevatorController: ElevatorController
+	var elevatorController: ElevatorController!
 
 	init(window: UIWindow) {
 		guard let navigationController = window.rootViewController as? UINavigationController, buildingViewController = navigationController.viewControllers[0] as? BuildingViewController else {
@@ -22,7 +22,7 @@ final class App {
 
 		self.navigationController = navigationController
 
-		elevatorController = ElevatorController(elevator: Elevator(story: building.stories[1]), building: building)
+		elevatorController = ElevatorController(cabin: building.cabin, dataSource: self)
 
 		buildingViewController.initialStoryViewController = initialStoryViewController
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
@@ -60,12 +60,30 @@ final class App {
 		guard let navigationController = storyboard.instantiateViewControllerWithIdentifier("ElevatorNavigationControllerStoryboardIdentifier") as? UINavigationController,
 			elevatorViewController = navigationController.topViewController as? ElevatorViewController
 			else { return }
-		elevatorViewController.elevator = elevatorController.elevator
+		elevatorViewController.cabin = elevatorController.cabin
 		elevatorViewController.didTapExit = exitElevator
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
 
 	func exitElevator() {
 		navigationController.dismissViewControllerAnimated(true, completion: nil)
+	}
+}
+
+extension App: ElevatorControllerDataSource {
+	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
+		return building.stories[level].doors
+	}
+
+	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String {
+		return building.stories[level].abbreviation
+	}
+
+	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel {
+		return building.stories[level].panel
+	}
+
+	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int {
+		return building.stories.count
 	}
 }

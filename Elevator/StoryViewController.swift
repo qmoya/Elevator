@@ -25,6 +25,6 @@ final class StoryViewController: UIViewController {
 
 	@IBAction func call(sender: AnyObject) {
 		print("elevator called on the \(story?.name)")
-		elevatorController?.call(from: self.story!)
+		story?.panel.call()
 	}
 }

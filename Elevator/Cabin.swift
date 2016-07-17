@@ -1,24 +1,29 @@
-import Foundation
+protocol CabinDelegate {
+	func cabinDidChangeState(cabin: Cabin)
+}
 
-public final class Elevator {
+public final class Cabin {
 
 	internal enum State {
-		case Stopped(Story)
-		case Moving(Story)
+		case Stopped(Level)
+		case Moving(Level)
 	}
 
 	internal var history = [State]()
 
-	internal var state: State {
+	internal var delegate: CabinDelegate?
+
+	internal var state: State = .Stopped(0) {
 		didSet {
 			history.append(state)
+			delegate?.cabinDidChangeState(self)
 		}
 	}
 
 	// TODO: does the current floor actually belong to the elevator?
 	// to unwrap the current level without having to switch all the time
-	var currentStory: Story {
-		var story: Story
+	internal var currentLevel: Level {
+		var story: Level
 		switch state {
 		case .Stopped(let s):
 			story = s
@@ -28,16 +33,14 @@ public final class Elevator {
 		return story
 	}
 
-	public init(story: Story) {
-		state = .Stopped(story)
-	}
+	public init() {}
 }
 
-extension Elevator.State: Equatable {}
+extension Cabin.State: Equatable {}
 
 // MARK: Equatable
 
-func ==(lhs: Elevator.State, rhs: Elevator.State) -> Bool {
+func ==(lhs: Cabin.State, rhs: Cabin.State) -> Bool {
 	switch (lhs, rhs) {
 	case (.Stopped(let leftStory), .Stopped(let rightStory)):
 		return leftStory == rightStory
