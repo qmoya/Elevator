@@ -5,13 +5,17 @@ final class StoryViewController: UIViewController {
 
 	var story: Story? {
 		didSet {
-			navigationItem.title = story?.name
+			guard let story = story else { return }
+			navigationItem.title = story.name
+			backgroundImageView.image = UIImage(named: story.backgroundImageName)
 		}
 	}
 
 	var didTapEnter: () -> () = {}
 
 	var elevatorController: ElevatorController?
+
+	@IBOutlet weak var backgroundImageView: UIImageView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
