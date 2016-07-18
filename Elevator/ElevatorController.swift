@@ -10,16 +10,20 @@ public protocol ElevatorControllerDataSource {
 }
 
 public final class ElevatorController {
-	private(set) var cabin: Cabin!
+	private(set) public var cabin: Cabin!
 
-	private(set) var cabinPanel: CabinPanel!
+	private(set) public var cabinPanel: CabinPanel!
 
 	public enum Mode {
 		case Normal
 		case Janitor
 	}
 
-	private(set) var mode: Mode = .Normal
+	private(set) var mode: Mode = .Normal {
+		didSet {
+			print("mode was set to \(mode)")
+		}
+	}
 
 	public func setMode(mode: Mode) throws {
 		if mode == .Janitor && !shouldEnableJanitorMode {
@@ -28,9 +32,7 @@ public final class ElevatorController {
 		self.mode = mode
 	}
 
-	private var shouldEnableJanitorMode: Bool {
-		return operationQueue.operationCount == 0
-	}
+	private var shouldEnableJanitorMode: Bool = true
 
 	public let dataSource: ElevatorControllerDataSource
 
@@ -44,7 +46,15 @@ public final class ElevatorController {
 	internal let operationQueue = NSOperationQueue()
 
 	internal func call(destination: Level) {
+		if mode == .Janitor {
+			cabin.state = .Stopped(destination)
+			return
+		}
+		shouldEnableJanitorMode = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination)
+		if let last = operationQueue.operations.last {
+			move.addDependency(last)
+		}
 		for doors in floorControllers.map({ $0.doors }) {
 			let close = CloseDoorsOperation(doors: doors)
 			operationQueue.addOperation(close)
@@ -54,6 +64,12 @@ public final class ElevatorController {
 		let openDoors = OpenDoorsOperation(doors: floorControllers[destination].doors)
 		openDoors.addDependency(move)
 		operationQueue.addOperation(openDoors)
+		let done = NSBlockOperation { [weak self] in
+			self?.shouldEnableJanitorMode = true
+			self?.cabinPanel.reloadData()
+		}
+		done.addDependency(openDoors)
+
 	}
 
 	private func loadFloorControllers() {
@@ -96,6 +112,7 @@ extension ElevatorController: CabinDelegate {
 		for controller in floorControllers {
 			controller.reloadData()
 		}
+		cabinPanel.reloadData()
 	}
 }
 
@@ -119,7 +136,7 @@ extension ElevatorController: CabinPanelDataSource {
 	}
 
 	func isJanitorModeAvailableForCabinPanel(cabinPanel: CabinPanel) -> Bool {
-		return shouldEnableJanitorMode
+		return mode == .Janitor || shouldEnableJanitorMode
 	}
 }
 
@@ -129,14 +146,13 @@ extension ElevatorController: CabinPanelDelegate {
 	}
 
 	func cabinPanelDidToggleJanitorMode(cabinPanel: CabinPanel) {
+		defer {
+			cabinPanel.reloadData()
+		}
 		if mode == .Normal {
 			mode = .Janitor
 			return
 		}
 		mode = .Normal
-	}
-	
-	func cabinPanelShouldToggleJanitorMode(cabinPanel: CabinPanel) -> Bool {
-		return shouldEnableJanitorMode
 	}
 }

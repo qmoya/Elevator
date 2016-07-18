@@ -1,7 +1,6 @@
 internal protocol CabinPanelDelegate {
 	func cabinPanel(cabinPanel: CabinPanel, didCallLevel: Level)
 	func cabinPanelDidToggleJanitorMode(cabinPanel: CabinPanel)
-	func cabinPanelShouldToggleJanitorMode(cabinPanel: CabinPanel) -> Bool
 }
 
 internal protocol CabinPanelDataSource {
@@ -20,23 +19,44 @@ public final class CabinPanel {
 	}
 
 	public func toggleJanitorMode() {
-		guard let delegate = delegate else { return }
-		if delegate.cabinPanelShouldToggleJanitorMode(self) {
-			delegate.cabinPanelDidToggleJanitorMode(self)
+		delegate?.cabinPanelDidToggleJanitorMode(self)
+	}
+
+	private(set) public var isJanitorModeEnabled = false {
+		didSet {
+			if isJanitorModeEnabled != oldValue {
+				janitorModeDidChange()
+			}
 		}
 	}
 
-	private(set) public var isJanitorModeEnabled = false
+	private(set) public var isJanitorModeAvailable = false {
+		didSet {
+			if isJanitorModeEnabled != oldValue {
+				janitorModeAvailabilityDidChange()
+			}
+		}
+	}
 
-	private(set) public var isJanitorModeAvailable = false
+	private(set) public var displayedText = "" {
+		didSet {
+			if displayedText != oldValue {
+				displayedTextDidChange()
+			}
+		}
+	}
 
-	private(set) public var displayedText = ""
+	public var displayedTextDidChange: () -> () = {}
+
+	public var janitorModeDidChange: () -> () = {}
+
+	public var janitorModeAvailabilityDidChange: () -> () = {}
 
 	private(set) public var numberOfLevels = 0
 
 	public init() {}
 
-	func reloadData() {
+	internal func reloadData() {
 		guard let dataSource = dataSource else { return }
 		numberOfLevels = dataSource.numberOfLevelsForCabinPanel(self)
 		displayedText = dataSource.displayedTextForCabinPanel(self)

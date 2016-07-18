@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rU4-wq-zti">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rU4-wq-zti">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11133"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -140,34 +141,99 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gray" translatesAutoresizingMaskIntoConstraints="NO" id="CN9-3W-BVe"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fo3-Vw-zUW" userLabel="Display" customClass="DisplayView" customModule="Elevator" customModuleProvider="target">
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pri-RN-JQQ">
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="y3w-On-wHd">
+                                            <frame key="frameInset"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-N3-daX">
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="pri-RN-JQQ" firstAttribute="top" secondItem="Fo3-Vw-zUW" secondAttribute="top" constant="18" id="7ZQ-T0-uLu"/>
+                                    <constraint firstItem="HfK-N3-daX" firstAttribute="height" secondItem="Fo3-Vw-zUW" secondAttribute="height" id="97G-c2-8yy"/>
+                                    <constraint firstItem="HfK-N3-daX" firstAttribute="width" secondItem="Fo3-Vw-zUW" secondAttribute="width" id="9Cv-DH-aEv"/>
+                                    <constraint firstItem="HfK-N3-daX" firstAttribute="centerX" secondItem="Fo3-Vw-zUW" secondAttribute="centerX" id="CQk-K8-psy"/>
+                                    <constraint firstAttribute="bottom" secondItem="pri-RN-JQQ" secondAttribute="bottom" constant="10" id="HaL-Hp-3I5"/>
+                                    <constraint firstItem="HfK-N3-daX" firstAttribute="centerY" secondItem="Fo3-Vw-zUW" secondAttribute="centerY" id="NPd-yL-KOB"/>
+                                    <constraint firstAttribute="trailing" secondItem="pri-RN-JQQ" secondAttribute="trailing" constant="-13" id="PbW-NC-h23"/>
+                                    <constraint firstAttribute="height" constant="120" id="RFt-ZL-NXI"/>
+                                    <constraint firstAttribute="width" constant="240" id="hcZ-hc-VZX"/>
+                                    <constraint firstItem="pri-RN-JQQ" firstAttribute="leading" secondItem="Fo3-Vw-zUW" secondAttribute="leading" constant="-13" id="tYP-Mt-3L0"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="HfK-N3-daX" id="gNI-Ru-EWA"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-qF-8ne">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5Y-Wr-Auc">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="G"/>
+                                        <connections>
+                                            <action selector="goToGroundFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="gD4-oi-adf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfG-pW-7za">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="3"/>
+                                        <connections>
+                                            <action selector="goToThirdFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="09F-cx-mgM"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE2-zn-EWz">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="2"/>
+                                        <connections>
+                                            <action selector="goToSecondFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="ayC-Ts-lsX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3c-HF-xnl">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="1"/>
+                                        <connections>
+                                            <action selector="goToFirstFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="uQc-Qf-NcU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kko-Zm-3wz">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="6"/>
+                                        <connections>
+                                            <action selector="goToSixthFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="icH-3C-wF8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d7-pY-r9C">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="5"/>
+                                        <connections>
+                                            <action selector="goToFifthFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="aDQ-wc-nMu"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nn8-8N-Z5f">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="4"/>
+                                        <connections>
+                                            <action selector="goToFourthFloorWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="gzH-sP-Zzy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFS-rE-FoO">
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                        <state key="normal" title="B"/>
+                                        <connections>
+                                            <action selector="goToBasementWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="Ubf-hT-Dhz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="kko-Zm-3wz" firstAttribute="centerX" secondItem="IfG-pW-7za" secondAttribute="centerX" id="1hX-pT-wjo"/>
                                     <constraint firstItem="Y3c-HF-xnl" firstAttribute="baseline" secondItem="qE2-zn-EWz" secondAttribute="baseline" id="6wS-gO-89f"/>
@@ -190,11 +256,30 @@
                                     <constraint firstItem="Y3c-HF-xnl" firstAttribute="centerX" secondItem="U5Y-Wr-Auc" secondAttribute="centerX" id="vK4-Cx-yjw"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hi3-hn-kXQ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QP6-he-6hO"/>
+                                    <constraint firstAttribute="width" constant="40" id="vWX-DJ-ccJ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Key"/>
+                                <state key="selected" image="KeyFilled"/>
+                                <connections>
+                                    <action selector="toggleJanitorModeWithSender:" destination="zho-Pa-81D" eventType="touchUpInside" id="X7j-cc-r4M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3Wf-qF-8ne" firstAttribute="top" secondItem="Fo3-Vw-zUW" secondAttribute="bottom" constant="10" id="Bwx-WL-8Q7"/>
                             <constraint firstItem="3Wf-qF-8ne" firstAttribute="centerX" secondItem="xlo-sO-KAv" secondAttribute="centerX" id="CYC-HO-DGi"/>
+                            <constraint firstItem="YMI-db-6aO" firstAttribute="top" secondItem="CN9-3W-BVe" secondAttribute="bottom" id="GWX-xS-xfz"/>
+                            <constraint firstItem="Hi3-hn-kXQ" firstAttribute="trailing" secondItem="3Wf-qF-8ne" secondAttribute="trailing" id="H4X-kE-xSY"/>
+                            <constraint firstItem="Hi3-hn-kXQ" firstAttribute="top" secondItem="3Wf-qF-8ne" secondAttribute="bottom" constant="50" id="Jkp-Vy-B7m"/>
                             <constraint firstItem="3Wf-qF-8ne" firstAttribute="centerY" secondItem="xlo-sO-KAv" secondAttribute="centerY" id="KE2-IZ-lZl"/>
+                            <constraint firstItem="CN9-3W-BVe" firstAttribute="top" secondItem="Jlt-zz-nSI" secondAttribute="bottom" id="RdU-Sr-qrP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CN9-3W-BVe" secondAttribute="trailing" constant="-16" id="Tm3-jy-Wwd"/>
+                            <constraint firstItem="CN9-3W-BVe" firstAttribute="leading" secondItem="xlo-sO-KAv" secondAttribute="leadingMargin" constant="-16" id="jBz-4D-YC0"/>
+                            <constraint firstItem="Fo3-Vw-zUW" firstAttribute="centerX" secondItem="3Wf-qF-8ne" secondAttribute="centerX" id="qXH-qY-O5o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Gi-0y-6oE">
@@ -204,6 +289,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="displayView" destination="Fo3-Vw-zUW" id="ERm-w6-E8A"/>
+                        <outlet property="janitorButton" destination="Hi3-hn-kXQ" id="qHO-PZ-iWZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gex-T0-rA2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -211,6 +300,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Gray" width="375" height="667"/>
+        <image name="Key" width="375" height="375"/>
+        <image name="KeyFilled" width="375" height="375"/>
         <image name="Pink" width="375" height="667"/>
     </resources>
 </document>

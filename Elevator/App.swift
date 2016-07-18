@@ -65,6 +65,9 @@ final class App {
 			elevatorViewController = navigationController.topViewController as? ElevatorViewController
 			else { return }
 		elevatorViewController.didTapExit = exitElevator
+		elevatorViewController.cabin = building.cabin
+		elevatorViewController.panel = building.cabinPanel
+		
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
 

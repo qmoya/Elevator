@@ -23,4 +23,8 @@ extension DisplayView.ViewData {
 	init(externalPanel: ExternalPanel) {
 		text = externalPanel.displayedText
 	}
+
+	init(cabinPanel: CabinPanel) {
+		text = cabinPanel.displayedText
+	}
 }
