@@ -8,9 +8,14 @@ final class App {
 	let navigationController: UINavigationController
 
 	let building = Building(stories: [
-		Story(name: "First", abbreviation: "1"),
-		Story(name: "Second", abbreviation: "2"),
-		Story(name: "Third", abbreviation: "3")
+		Story(name: "Basement", abbreviation: "B", backgroundImageName: "Black"),
+		Story(name: "Ground Floor", abbreviation: "G", backgroundImageName: "Blue"),
+		Story(name: "First Floor", abbreviation: "1", backgroundImageName: "Green"),
+		Story(name: "Second Floor", abbreviation: "2", backgroundImageName: "Pink"),
+		Story(name: "Third Floor", abbreviation: "3", backgroundImageName: "Yellow"),
+		Story(name: "Fourth Floor", abbreviation: "4", backgroundImageName: "Purple"),
+		Story(name: "Fifth Floor", abbreviation: "5", backgroundImageName: "Red"),
+		Story(name: "Sixth Floor", abbreviation: "6", backgroundImageName: "Cyan"),
 	])
 
 	var elevatorController: ElevatorController!
@@ -47,7 +52,6 @@ final class App {
 	func storyViewControllerForStory(story: Story) -> StoryViewController? {
 		guard let viewController = storyboard.instantiateViewControllerWithIdentifier("StoryViewControllerStoryboardIdentifier") as? StoryViewController else { fatalError() }
 		viewController.story = story
-		viewController.elevatorController = elevatorController
 		viewController.didTapEnter = showElevator
 		return viewController
 	}

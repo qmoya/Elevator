@@ -16,11 +16,12 @@
 		A57C160C1D3BF2D700AE124A /* FloorControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C160B1D3BF2D700AE124A /* FloorControllerSpecs.swift */; };
 		A57C160E1D3BFB7200AE124A /* Stubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C160D1D3BFB7200AE124A /* Stubs.swift */; };
 		A57C16101D3C027100AE124A /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C160F1D3C027100AE124A /* Mocks.swift */; };
+		A5A6039E1D3C2909003FF839 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A6039D1D3C2909003FF839 /* DisplayView.swift */; };
 		A5BBC6FA1D3A5D9300181D27 /* ElevatorControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */; };
 		A5BBC6FC1D3B8B3B00181D27 /* CabinSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */; };
 		A5BBC6FE1D3BA11D00181D27 /* MoveOperationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FD1D3BA11D00181D27 /* MoveOperationSpecs.swift */; };
 		A5BBC7001D3BA78D00181D27 /* CloseDoorOperationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBC6FF1D3BA78D00181D27 /* CloseDoorOperationSpecs.swift */; };
-		A5C2244A1D3AC64B00F68507 /* DoorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C224491D3AC64B00F68507 /* DoorController.swift */; };
+		A5C2244A1D3AC64B00F68507 /* FloorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C224491D3AC64B00F68507 /* FloorController.swift */; };
 		A5C2244B1D3ACA8800F68507 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571631D38DE8A00634F29 /* Story.swift */; };
 		A5C2244C1D3ACD4900F68507 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571651D38DEC700634F29 /* Building.swift */; };
 		A5C2244E1D3AEC4B00F68507 /* ExternalPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2244D1D3AEC4B00F68507 /* ExternalPanel.swift */; };
@@ -130,11 +131,12 @@
 		A57C160B1D3BF2D700AE124A /* FloorControllerSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorControllerSpecs.swift; sourceTree = "<group>"; };
 		A57C160D1D3BFB7200AE124A /* Stubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stubs.swift; sourceTree = "<group>"; };
 		A57C160F1D3C027100AE124A /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		A5A6039D1D3C2909003FF839 /* DisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		A5BBC6F91D3A5D9300181D27 /* ElevatorControllerSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorControllerSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6FB1D3B8B3B00181D27 /* CabinSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6FD1D3BA11D00181D27 /* MoveOperationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveOperationSpecs.swift; sourceTree = "<group>"; };
 		A5BBC6FF1D3BA78D00181D27 /* CloseDoorOperationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseDoorOperationSpecs.swift; sourceTree = "<group>"; };
-		A5C224491D3AC64B00F68507 /* DoorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoorController.swift; sourceTree = "<group>"; };
+		A5C224491D3AC64B00F68507 /* FloorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorController.swift; sourceTree = "<group>"; };
 		A5C2244D1D3AEC4B00F68507 /* ExternalPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPanel.swift; sourceTree = "<group>"; };
 		A5DE85771D3A42EF0052730D /* ElevatorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ElevatorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DE85791D3A42EF0052730D /* ElevatorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElevatorKit.h; sourceTree = "<group>"; };
@@ -251,7 +253,7 @@
 				A5020B101D3900800028CD1D /* Doors.swift */,
 				A5DE85791D3A42EF0052730D /* ElevatorKit.h */,
 				A5DE857B1D3A42EF0052730D /* Info.plist */,
-				A5C224491D3AC64B00F68507 /* DoorController.swift */,
+				A5C224491D3AC64B00F68507 /* FloorController.swift */,
 				A5C2244D1D3AEC4B00F68507 /* ExternalPanel.swift */,
 				A57C16071D3BC24D00AE124A /* CabinPanel.swift */,
 			);
@@ -313,6 +315,7 @@
 				A5E8BC0B1D36B688005A4317 /* Info.plist */,
 				A5E8BC2D1D36BE3C005A4317 /* App.swift */,
 				A5020B151D39023F0028CD1D /* Model */,
+				A5A6039D1D3C2909003FF839 /* DisplayView.swift */,
 			);
 			path = Elevator;
 			sourceTree = "<group>";
@@ -566,7 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5DE85991D3A432A0052730D /* ElevatorController.swift in Sources */,
-				A5C2244A1D3AC64B00F68507 /* DoorController.swift in Sources */,
+				A5C2244A1D3AC64B00F68507 /* FloorController.swift in Sources */,
 				A5DE859A1D3A432A0052730D /* MoveOperation.swift in Sources */,
 				A5DE85981D3A43060052730D /* Doors.swift in Sources */,
 				A5C2244E1D3AEC4B00F68507 /* ExternalPanel.swift in Sources */,
@@ -598,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A6039E1D3C2909003FF839 /* DisplayView.swift in Sources */,
 				A5C2244B1D3ACA8800F68507 /* Story.swift in Sources */,
 				A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */,
 				A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */,

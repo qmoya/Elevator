@@ -56,20 +56,30 @@ public final class ElevatorController {
 		operationQueue.addOperation(openDoors)
 	}
 
-	private func loadData() {
+	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
 			let doors = dataSource.elevatorController(self, doorsForLevel: level)
 			let panel = dataSource.elevatorController(self, panelForLevel: level)
 			let floorController = FloorController(doors: doors, panel: panel, delegate: self, dataSource: self)
 			floorControllers.append(floorController)
 		}
+	}
 
+	private func loadCabin() {
 		cabin = dataSource.cabinForElevatorController(self)
 		cabin.delegate = self
+	}
 
+	private func loadCabinPanel() {
 		cabinPanel = dataSource.cabinPanelForElevatorController(self)
 		cabinPanel.dataSource = self
 		cabinPanel.delegate = self
+	}
+
+	private func loadData() {
+		loadFloorControllers()
+		loadCabin()
+		loadCabinPanel()
 	}
 }
 

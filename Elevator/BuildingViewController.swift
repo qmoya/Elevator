@@ -13,7 +13,9 @@ class BuildingViewController: UIPageViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let initial = initialStoryViewController()
 		setViewControllers([initialStoryViewController()], direction: .Forward, animated: true, completion: nil)
+		didChangeStoryViewController(initial)
 	}
 
 	required init?(coder: NSCoder) {

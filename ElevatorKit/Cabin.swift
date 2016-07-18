@@ -30,7 +30,10 @@ public final class Cabin {
 		didSet {
 			previousStates.append(oldValue)
 			if state != oldValue {
-				delegate?.cabinDidChangeState(self)
+				dispatch_async(dispatch_get_main_queue()) { [weak self] in
+					guard let s = self else { return }
+					s.delegate?.cabinDidChangeState(s)
+				}
 			}
 		}
 	}

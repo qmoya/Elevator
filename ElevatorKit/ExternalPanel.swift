@@ -12,7 +12,13 @@ public final class ExternalPanel {
 		delegate?.externalPanelDidCall(self)
 	}
 
-	public var displayedText = ""
+	public var displayedTextDidChange: () -> () = {}
+
+	public var displayedText = "" {
+		didSet {
+			displayedTextDidChange()
+		}
+	}
 
 	public init() {}
 
