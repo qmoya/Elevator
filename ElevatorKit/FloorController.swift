@@ -27,6 +27,10 @@ internal final class FloorController {
 	func reloadData() {
 		externalPanel.reloadData()
 	}
+
+	internal func closeDoorsOperation() -> CloseDoorsOperation {
+		return CloseDoorsOperation(doors: doors, timeInterval: 1)
+	}
 }
 
 extension FloorController: ExternalPanelDelegate {

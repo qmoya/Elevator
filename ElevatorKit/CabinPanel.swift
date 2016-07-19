@@ -12,7 +12,11 @@ internal protocol CabinPanelDataSource {
 
 public final class CabinPanel {
 	internal var delegate: CabinPanelDelegate?
-	internal var dataSource: CabinPanelDataSource?
+	internal var dataSource: CabinPanelDataSource? {
+		didSet {
+			reloadData()
+		}
+	}
 
 	public func call(level: Level) {
 		delegate?.cabinPanel(self, didCallLevel: level)

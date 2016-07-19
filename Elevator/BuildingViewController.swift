@@ -1,7 +1,7 @@
 import UIKit
 import ElevatorKit
 
-class BuildingViewController: UIPageViewController {
+class StoriesViewController: UIPageViewController {
 
 	var didChangeStoryViewController: (StoryViewController) -> () = { _ in }
 
@@ -25,7 +25,7 @@ class BuildingViewController: UIPageViewController {
 	}
 }
 
-extension BuildingViewController: UIPageViewControllerDataSource {
+extension StoriesViewController: UIPageViewControllerDataSource {
 	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 		guard let storyViewController = viewController as? StoryViewController else { return nil }
 		return storyViewControllerBelowStoryViewController(storyViewController)
@@ -37,7 +37,7 @@ extension BuildingViewController: UIPageViewControllerDataSource {
 	}
 }
 
-extension BuildingViewController: UIPageViewControllerDelegate {
+extension StoriesViewController: UIPageViewControllerDelegate {
 	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 		if !completed { return }
 		if let viewControllers = viewControllers, last = viewControllers.last as? StoryViewController {

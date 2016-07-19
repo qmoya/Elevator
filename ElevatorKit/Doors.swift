@@ -14,7 +14,8 @@ public final class Doors {
 		self.state = state
 	}
 
-	public var doorsDidChangeState: () -> () = {}
+	public var didChangeExteriorState: () -> () = {}
+	public var didChangeInteriorState: () -> () = {}
 
 	internal var delegate: DoorsDelegate?
 

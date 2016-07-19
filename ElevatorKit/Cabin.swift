@@ -8,6 +8,8 @@ public final class Cabin {
 		self.state = .Stopped(level)
 	}
 
+	public var didChangeState: () -> () = {}
+
 	internal enum State {
 		case Stopped(Level)
 		case MovingUp(Level)
@@ -33,6 +35,12 @@ public final class Cabin {
 			case .Stopped:
 				return ""
 			}
+		}
+	}
+
+	internal(set) public var doors: Doors? {
+		didSet {
+			print("setting doors of cabin")
 		}
 	}
 

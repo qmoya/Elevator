@@ -20,10 +20,10 @@ final class App {
 
 	var elevatorController: ElevatorController!
 	
-	var buildingViewController: BuildingViewController!
+	var buildingViewController: StoriesViewController!
 	
 	init(window: UIWindow) {
-		guard let navigationController = window.rootViewController as? UINavigationController, buildingViewController = navigationController.viewControllers[0] as? BuildingViewController else {
+		guard let navigationController = window.rootViewController as? UINavigationController, buildingViewController = navigationController.viewControllers[0] as? StoriesViewController else {
 			fatalError("unexpected initial view controllers")
 		}
 
@@ -31,10 +31,10 @@ final class App {
 		self.buildingViewController = buildingViewController
 		elevatorController = ElevatorController(dataSource: self)
 		
-		configureBuildingViewController()
+		configureStoriesViewController()
 	}
 	
-	func configureBuildingViewController() {
+	func configureStoriesViewController() {
 		buildingViewController.initialStoryViewController = initialStoryViewController
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
 		buildingViewController.storyViewControllerAboveStoryViewController = storyViewControllerAboveStoryViewController
@@ -68,12 +68,12 @@ final class App {
 
 	func showElevator() {
 		guard let navigationController = storyboard.instantiateViewControllerWithIdentifier("ElevatorNavigationControllerStoryboardIdentifier") as? UINavigationController,
-			elevatorViewController = navigationController.topViewController as? ElevatorViewController
+			elevatorViewController = navigationController.topViewController as? CabinViewController
 			else { return }
 		elevatorViewController.didTapExit = exitElevator
 		elevatorViewController.cabin = building.cabin
 		elevatorViewController.panel = building.cabinPanel
-		
+
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
 

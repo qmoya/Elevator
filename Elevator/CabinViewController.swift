@@ -1,8 +1,12 @@
 import UIKit
 import ElevatorKit
 
-class ElevatorViewController: UIViewController {
-	var cabin: Cabin?
+class CabinViewController: UIViewController {
+	var cabin: Cabin? {
+		didSet {
+			cabin?.didChangeState = refresh
+		}
+	}
 
 	var panel: CabinPanel? {
 		didSet {
@@ -21,9 +25,15 @@ class ElevatorViewController: UIViewController {
 	}
 
 	func refresh() {
+		cabin?.doors?.didChangeInteriorState = updateExitButton
 		updateDisplayView()
 		updateJanitorButtonEnabled()
 		updateJanitorButtonSelected()
+	}
+
+	func updateExitButton() {
+		print("updating exit button for \(cabin?.doors?.state == .Open)")
+		navigationItem.rightBarButtonItem?.enabled = cabin?.doors?.state == .Open
 	}
 	
 	func updateDisplayView() {
@@ -92,5 +102,9 @@ class ElevatorViewController: UIViewController {
 
 	@IBAction func goToSixthFloorWithSender(sender: AnyObject) {
 		call(7)
+	}
+
+	deinit {
+		print("DEINIT")
 	}
 }

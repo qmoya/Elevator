@@ -15,14 +15,15 @@ internal class MoveOperation: NSOperation {
 
 	internal override func main() {
 		let delta = cabin.currentLevel < destination ? 1 : -1
-		let stride = cabin.currentLevel.stride(to: destination + delta, by: delta)
+		let stride = cabin.currentLevel.stride(to: destination, by: delta)
+//		NSThread.sleepForTimeInterval(timeInterval)
 		for level in stride {
-			NSThread.sleepForTimeInterval(timeInterval)
 			if delta > 0 {
 				cabin.state = .MovingUp(level)
 			} else {
 				cabin.state = .MovingDown(level)
 			}
+			NSThread.sleepForTimeInterval(timeInterval)
 		}
 		cabin.state = .Stopped(destination)
 	}

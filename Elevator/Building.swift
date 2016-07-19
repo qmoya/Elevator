@@ -21,6 +21,10 @@ struct Building {
 		return stories[index-1]
 	}
 
+	func areDoorsOpenAtCurrentCabinLevel() -> Bool {
+		return stories[cabin.currentLevel].doors.state == .Open
+	}
+
 	init(stories: [Story], defaultLevel: Level) {
 		self.stories = stories
 		self.defaultLevel = defaultLevel

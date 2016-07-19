@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-478" y="290"/>
         </scene>
-        <!--Building View Controller-->
+        <!--Stories View Controller-->
         <scene sceneID="rjD-Zx-ti7">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="vertical" spineLocation="none" id="gQf-t3-1Uh" customClass="BuildingViewController" customModule="Elevator" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="vertical" spineLocation="none" id="gQf-t3-1Uh" customClass="StoriesViewController" customModule="Elevator" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="178-lW-Iwg"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zLM-mC-TP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,7 +56,6 @@
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpG-rl-9K2">
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qB7-JD-j7w">
-                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                         <blurEffect style="light"/>
@@ -129,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="2048" y="215"/>
         </scene>
-        <!--Elevator View Controller-->
+        <!--Cabin View Controller-->
         <scene sceneID="bVL-Sv-38f">
             <objects>
-                <viewController storyboardIdentifier="ElevatorViewControllerStoryboardIdentifier" id="zho-Pa-81D" customClass="ElevatorViewController" customModule="Elevator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CabinViewControllerStoryboardIdentifier" id="zho-Pa-81D" customClass="CabinViewController" customModule="Elevator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jlt-zz-nSI"/>
                         <viewControllerLayoutGuide type="bottom" id="YMI-db-6aO"/>
@@ -146,7 +145,6 @@
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pri-RN-JQQ">
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="y3w-On-wHd">
-                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                         <blurEffect style="light"/>

@@ -54,15 +54,13 @@ public final class ElevatorController {
 		}
 		shouldEnableJanitorMode = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: 2)
-		for doors in floorControllers.map({ $0.doors }) {
-			let close = CloseDoorsOperation(doors: doors)
-			operationQueue.addOperation(close)
+		for close in floorControllers.map({$0.closeDoorsOperation()}) {
 			move.addDependency(close)
+			operationQueue.addOperation(close)
 		}
-		operationQueue.addOperation(move)
-		let openDoors = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: 1)
-		openDoors.addDependency(move)
-		operationQueue.addOperation(openDoors)
+		let open = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: 1)
+		open.addDependency(move)
+		operationQueue.addOperations([move, open], waitUntilFinished: false)
 	}
 
 	private func loadFloorControllers() {
@@ -80,7 +78,9 @@ public final class ElevatorController {
 
 	private func loadCabin() {
 		cabin = dataSource.cabinForElevatorController(self)
-		cabin.state = .Stopped(dataSource.defaultCabinLevelForElevatorController(self))
+		let defaultLevel = dataSource.defaultCabinLevelForElevatorController(self)
+		cabin.state = .Stopped(defaultLevel)
+		cabin.doors = dataSource.elevatorController(self, doorsForLevel: defaultLevel)
 		cabin.delegate = self
 	}
 
@@ -90,10 +90,27 @@ public final class ElevatorController {
 		cabinPanel.delegate = self
 	}
 
-	private func loadData() {
+	public func loadData() {
 		loadCabin()
 		loadFloorControllers()
 		loadCabinPanel()
+	}
+
+	private func reloadFloorControllersData() {
+		for controller in floorControllers {
+			NSOperationQueue.mainQueue().addOperationWithBlock {
+				controller.reloadData()
+			}
+		}
+	}
+
+	private func reloadCabinData() {
+		cabin.doors = dataSource.elevatorController(self, doorsForLevel: cabin.currentLevel)
+		NSOperationQueue.mainQueue().addOperationWithBlock { [weak self] in
+			guard let s = self else { return }
+			s.cabin.didChangeState()
+			s.cabinPanel.reloadData()
+		}
 	}
 }
 
@@ -107,14 +124,8 @@ extension ElevatorController: FloorControllerDelegate {
 extension ElevatorController: CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin) {
 		print(cabin.state)
-		for controller in floorControllers {
-			NSOperationQueue.mainQueue().addOperationWithBlock {
-				controller.reloadData()
-			}
-		}
-		NSOperationQueue.mainQueue().addOperationWithBlock { [weak self] in
-			self?.cabinPanel.reloadData()
-		}
+		reloadFloorControllersData()
+		reloadCabinData()
 	}
 }
 
@@ -164,7 +175,9 @@ extension ElevatorController: CabinPanelDelegate {
 extension ElevatorController: DoorsDelegate {
 	func doorsDidChangeState(doors: Doors) {
 		NSOperationQueue.mainQueue().addOperationWithBlock {
-			doors.doorsDidChangeState()
+			print("doors: \(doors.state)")
+			doors.didChangeExteriorState()
+			doors.didChangeInteriorState()
 		}
 	}
 }

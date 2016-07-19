@@ -46,7 +46,7 @@
 		A5E8BC151D36B688005A4317 /* ElevatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC141D36B688005A4317 /* ElevatorTests.swift */; };
 		A5E8BC201D36B688005A4317 /* ElevatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC1F1D36B688005A4317 /* ElevatorUITests.swift */; };
 		A5E8BC2E1D36BE3C005A4317 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC2D1D36BE3C005A4317 /* App.swift */; };
-		A5E8BC301D36C077005A4317 /* ElevatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC2F1D36C077005A4317 /* ElevatorViewController.swift */; };
+		A5E8BC301D36C077005A4317 /* CabinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8BC2F1D36C077005A4317 /* CabinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,7 +157,7 @@
 		A5E8BC1F1D36B688005A4317 /* ElevatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorUITests.swift; sourceTree = "<group>"; };
 		A5E8BC211D36B688005A4317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5E8BC2D1D36BE3C005A4317 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		A5E8BC2F1D36C077005A4317 /* ElevatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElevatorViewController.swift; sourceTree = "<group>"; };
+		A5E8BC2F1D36C077005A4317 /* CabinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +237,7 @@
 			children = (
 				A535715F1D38DDF900634F29 /* StoryViewController.swift */,
 				A53571611D38DE3F00634F29 /* BuildingViewController.swift */,
-				A5E8BC2F1D36C077005A4317 /* ElevatorViewController.swift */,
+				A5E8BC2F1D36C077005A4317 /* CabinViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 				A5C2244B1D3ACA8800F68507 /* Story.swift in Sources */,
 				A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */,
 				A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */,
-				A5E8BC301D36C077005A4317 /* ElevatorViewController.swift in Sources */,
+				A5E8BC301D36C077005A4317 /* CabinViewController.swift in Sources */,
 				A5E8BC2E1D36BE3C005A4317 /* App.swift in Sources */,
 				A5E8BC001D36B688005A4317 /* AppDelegate.swift in Sources */,
 				A5C2244C1D3ACD4900F68507 /* Building.swift in Sources */,

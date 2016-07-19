@@ -1,10 +1,13 @@
 import Foundation
 
-class CloseDoorsOperation: NSOperation {
-	let doors: Doors
+internal class CloseDoorsOperation: NSOperation {
+	internal let doors: Doors
 
-	init(doors: Doors) {
+	internal let timeInterval: NSTimeInterval
+
+	init(doors: Doors, timeInterval: NSTimeInterval) {
 		self.doors = doors
+		self.timeInterval = timeInterval
 	}
 
 	override func main() {

@@ -6,7 +6,6 @@ final class StoryViewController: UIViewController {
 	var story: Story? {
 		didSet {
 			navigationItem.title = story?.name
-			story?.doors.doorsDidChangeState = refreshEnterButtonState
 		}
 	}
 
@@ -24,6 +23,7 @@ final class StoryViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		story?.doors.didChangeExteriorState = refreshEnterButtonState
 		reloadData()
 	}
 
