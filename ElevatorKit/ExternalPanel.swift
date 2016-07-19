@@ -24,7 +24,11 @@ public final class ExternalPanel {
 
 	internal var delegate: ExternalPanelDelegate?
 
-	internal var dataSource: ExternalPanelDataSource?
+	internal var dataSource: ExternalPanelDataSource? {
+		didSet {
+			reloadData()
+		}
+	}
 
 	internal func reloadData() {
 		guard let dataSource = dataSource else { return }

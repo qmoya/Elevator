@@ -14,17 +14,18 @@ internal final class FloorController {
 	let dataSource: FloorControllerDataSource
 
 	let externalPanel: ExternalPanel
-
+	
 	init(doors: Doors, panel: ExternalPanel, delegate: FloorControllerDelegate, dataSource: FloorControllerDataSource) {
 		self.doors = doors
 		self.delegate = delegate
 		self.dataSource = dataSource
 		self.externalPanel = panel
 		self.externalPanel.delegate = self
+		self.externalPanel.dataSource = self
 	}
 
 	func reloadData() {
-		externalPanel.displayedText = dataSource.displayedTextForFloorController(self)
+		externalPanel.reloadData()
 	}
 }
 
@@ -34,6 +35,8 @@ extension FloorController: ExternalPanelDelegate {
 	}
 }
 
-//extension FloorController: ExternalPanelDataSource {
-//
-//}
+extension FloorController: ExternalPanelDataSource {
+	func displayedTextForExternalPanel(externalPanel: ExternalPanel) -> String {
+		return self.dataSource.displayedTextForFloorController(self)
+	}
+}

@@ -14,10 +14,10 @@ class BuildingViewController: UIPageViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let initial = initialStoryViewController()
-		setViewControllers([initialStoryViewController()], direction: .Forward, animated: true, completion: nil)
+		setViewControllers([initial], direction: .Forward, animated: true, completion: nil)
 		didChangeStoryViewController(initial)
 	}
-
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		dataSource = self // TODO: can't set it in the storyboard — check why

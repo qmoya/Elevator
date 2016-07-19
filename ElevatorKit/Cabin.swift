@@ -38,7 +38,7 @@ public final class Cabin {
 		}
 	}
 
-	internal var currentLevel: Level {
+	public var currentLevel: Level {
 		return state.level
 	}
 }

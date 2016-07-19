@@ -7,6 +7,7 @@ public protocol ElevatorControllerDataSource {
 	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String
 	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors
 	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel
+	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level
 }
 
 public final class ElevatorController {
@@ -38,6 +39,7 @@ public final class ElevatorController {
 
 	public init(dataSource: ElevatorControllerDataSource) {
 		self.dataSource = dataSource
+		operationQueue.maxConcurrentOperationCount = 1
 		loadData()
 	}
 
@@ -52,9 +54,9 @@ public final class ElevatorController {
 		}
 		shouldEnableJanitorMode = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination)
-		if let last = operationQueue.operations.last {
-			move.addDependency(last)
-		}
+//		if let last = operationQueue.operations.last {
+//			move.addDependency(last)
+//		}
 		for doors in floorControllers.map({ $0.doors }) {
 			let close = CloseDoorsOperation(doors: doors)
 			operationQueue.addOperation(close)
@@ -64,17 +66,20 @@ public final class ElevatorController {
 		let openDoors = OpenDoorsOperation(doors: floorControllers[destination].doors)
 		openDoors.addDependency(move)
 		operationQueue.addOperation(openDoors)
-		let done = NSBlockOperation { [weak self] in
-			self?.shouldEnableJanitorMode = true
-			self?.cabinPanel.reloadData()
-		}
-		done.addDependency(openDoors)
+//		let done = NSBlockOperation { [weak self] in
+//			self?.shouldEnableJanitorMode = true
+//			self?.cabinPanel.reloadData()
+//		}
+//		done.addDependency(openDoors)
 
 	}
 
 	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
 			let doors = dataSource.elevatorController(self, doorsForLevel: level)
+			if level == dataSource.defaultCabinLevelForElevatorController(self) {
+				doors.state = .Open
+			}
 			let panel = dataSource.elevatorController(self, panelForLevel: level)
 			let floorController = FloorController(doors: doors, panel: panel, delegate: self, dataSource: self)
 			floorControllers.append(floorController)
@@ -83,6 +88,7 @@ public final class ElevatorController {
 
 	private func loadCabin() {
 		cabin = dataSource.cabinForElevatorController(self)
+		cabin.state = .Stopped(dataSource.defaultCabinLevelForElevatorController(self))
 		cabin.delegate = self
 	}
 
@@ -93,8 +99,8 @@ public final class ElevatorController {
 	}
 
 	private func loadData() {
-		loadFloorControllers()
 		loadCabin()
+		loadFloorControllers()
 		loadCabinPanel()
 	}
 }

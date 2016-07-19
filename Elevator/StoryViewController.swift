@@ -20,8 +20,11 @@ final class StoryViewController: UIViewController {
 		super.viewDidLoad()
 		backgroundImageView.image = UIImage(named: story!.backgroundImageName)
 		story?.panel.displayedTextDidChange = updateDisplayText
-		updateDisplayText()
-		refreshEnterButtonState()
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		reloadData()
 	}
 
 	@IBAction func call(sender: AnyObject) {
@@ -40,6 +43,11 @@ final class StoryViewController: UIViewController {
 
 	func refreshEnterButtonState() {
 		self.navigationItem.rightBarButtonItem?.enabled = story?.doors.state == .Open
+	}
+	
+	func reloadData() {
+		refreshEnterButtonState()
+		updateDisplayText()
 	}
 }
 

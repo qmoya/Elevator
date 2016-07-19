@@ -16,19 +16,25 @@ final class App {
 		Story(name: "Fourth Floor", abbreviation: "4", backgroundImageName: "Purple"),
 		Story(name: "Fifth Floor", abbreviation: "5", backgroundImageName: "Red"),
 		Story(name: "Sixth Floor", abbreviation: "6", backgroundImageName: "Cyan"),
-	])
+		], defaultLevel: 1)
 
 	var elevatorController: ElevatorController!
-
+	
+	var buildingViewController: BuildingViewController!
+	
 	init(window: UIWindow) {
 		guard let navigationController = window.rootViewController as? UINavigationController, buildingViewController = navigationController.viewControllers[0] as? BuildingViewController else {
 			fatalError("unexpected initial view controllers")
 		}
 
 		self.navigationController = navigationController
-
+		self.buildingViewController = buildingViewController
 		elevatorController = ElevatorController(dataSource: self)
-
+		
+		configureBuildingViewController()
+	}
+	
+	func configureBuildingViewController() {
 		buildingViewController.initialStoryViewController = initialStoryViewController
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
 		buildingViewController.storyViewControllerAboveStoryViewController = storyViewControllerAboveStoryViewController
@@ -72,6 +78,12 @@ final class App {
 	}
 
 	func exitElevator() {
+		let level = building.cabin.currentLevel
+		let story = building.stories[level]
+		if let viewController = storyViewControllerForStory(story) {
+			buildingViewController.setViewControllers([viewController], direction: .Forward, animated: false, completion: nil)
+			updateNavigationBarForStoryViewController(viewController)
+		}
 		navigationController.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
@@ -99,5 +111,9 @@ extension App: ElevatorControllerDataSource {
 
 	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel {
 		return building.cabinPanel
+	}
+	
+	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level {
+		return building.defaultLevel
 	}
 }

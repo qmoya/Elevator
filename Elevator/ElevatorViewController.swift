@@ -14,7 +14,18 @@ class ElevatorViewController: UIViewController {
 	}
 
 	var didTapExit: () -> () = {}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		refresh()
+	}
 
+	func refresh() {
+		updateDisplayView()
+		updateJanitorButtonEnabled()
+		updateJanitorButtonSelected()
+	}
+	
 	func updateDisplayView() {
 		guard let panel = panel else { return }
 		displayView.viewData = DisplayView.ViewData(cabinPanel: panel)
