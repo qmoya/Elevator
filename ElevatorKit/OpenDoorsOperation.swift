@@ -1,10 +1,13 @@
 import Foundation
 
 class OpenDoorsOperation: NSOperation {
-	let doors: Doors
+	internal let doors: Doors
 
-	init(doors: Doors) {
+	internal let timeInterval: NSTimeInterval
+
+	init(doors: Doors, timeInterval: NSTimeInterval) {
 		self.doors = doors
+		self.timeInterval = timeInterval
 	}
 
 	override func main() {
@@ -12,7 +15,7 @@ class OpenDoorsOperation: NSOperation {
 			return
 		}
 		doors.state = .Opening
-		NSThread.sleepForTimeInterval(0.1)
+		NSThread.sleepForTimeInterval(timeInterval)
 		doors.state = .Open
 	}
 }

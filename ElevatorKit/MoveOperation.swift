@@ -5,17 +5,24 @@ internal class MoveOperation: NSOperation {
 
 	internal let destination: Level
 
-	internal init(cabin: Cabin, destination: Level) {
+	internal let timeInterval: NSTimeInterval
+
+	internal init(cabin: Cabin, destination: Level, timeInterval: NSTimeInterval) {
 		self.cabin = cabin
 		self.destination = destination
+		self.timeInterval = timeInterval
 	}
 
 	internal override func main() {
 		let delta = cabin.currentLevel < destination ? 1 : -1
-		let stride = cabin.currentLevel.stride(to: destination, by: delta)
+		let stride = cabin.currentLevel.stride(to: destination + delta, by: delta)
 		for level in stride {
-			NSThread.sleepForTimeInterval(0.1)
-			cabin.state = .Moving(level)
+			NSThread.sleepForTimeInterval(timeInterval)
+			if delta > 0 {
+				cabin.state = .MovingUp(level)
+			} else {
+				cabin.state = .MovingDown(level)
+			}
 		}
 		cabin.state = .Stopped(destination)
 	}

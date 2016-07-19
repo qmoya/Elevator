@@ -1,4 +1,4 @@
-public protocol DoorsDelegate {
+internal protocol DoorsDelegate {
 	func doorsDidChangeState(doors: Doors)
 }
 
@@ -14,7 +14,9 @@ public final class Doors {
 		self.state = state
 	}
 
-	public var delegate: DoorsDelegate?
+	public var doorsDidChangeState: () -> () = {}
+
+	internal var delegate: DoorsDelegate?
 
 	internal var previousStates = [State]()
 
@@ -22,10 +24,7 @@ public final class Doors {
 		didSet {
 			previousStates.append(oldValue)
 			if state != oldValue {
-				dispatch_async(dispatch_get_main_queue()) { [weak self] in
-					guard let s = self else { return }
-					s.delegate?.doorsDidChangeState(s)
-				}
+				self.delegate?.doorsDidChangeState(self)
 			}
 		}
 	}

@@ -53,30 +53,22 @@ public final class ElevatorController {
 			return
 		}
 		shouldEnableJanitorMode = false
-		let move = MoveOperation(cabin: self.cabin, destination: destination)
-//		if let last = operationQueue.operations.last {
-//			move.addDependency(last)
-//		}
+		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: 2)
 		for doors in floorControllers.map({ $0.doors }) {
 			let close = CloseDoorsOperation(doors: doors)
 			operationQueue.addOperation(close)
 			move.addDependency(close)
 		}
 		operationQueue.addOperation(move)
-		let openDoors = OpenDoorsOperation(doors: floorControllers[destination].doors)
+		let openDoors = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: 1)
 		openDoors.addDependency(move)
 		operationQueue.addOperation(openDoors)
-//		let done = NSBlockOperation { [weak self] in
-//			self?.shouldEnableJanitorMode = true
-//			self?.cabinPanel.reloadData()
-//		}
-//		done.addDependency(openDoors)
-
 	}
 
 	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
 			let doors = dataSource.elevatorController(self, doorsForLevel: level)
+			doors.delegate = self
 			if level == dataSource.defaultCabinLevelForElevatorController(self) {
 				doors.state = .Open
 			}
@@ -116,15 +108,21 @@ extension ElevatorController: CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin) {
 		print(cabin.state)
 		for controller in floorControllers {
-			controller.reloadData()
+			NSOperationQueue.mainQueue().addOperationWithBlock {
+				controller.reloadData()
+			}
 		}
-		cabinPanel.reloadData()
+		NSOperationQueue.mainQueue().addOperationWithBlock { [weak self] in
+			self?.cabinPanel.reloadData()
+		}
 	}
 }
 
 extension ElevatorController: FloorControllerDataSource {
 	func displayedTextForFloorController(floorController: FloorController) -> String {
-		return dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
+		let arrow = cabin.state.arrow
+		let abbreviation = dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
+		return "\(arrow) \(abbreviation)"
 	}
 }
 
@@ -160,5 +158,13 @@ extension ElevatorController: CabinPanelDelegate {
 			return
 		}
 		mode = .Normal
+	}
+}
+
+extension ElevatorController: DoorsDelegate {
+	func doorsDidChangeState(doors: Doors) {
+		NSOperationQueue.mainQueue().addOperationWithBlock {
+			doors.doorsDidChangeState()
+		}
 	}
 }

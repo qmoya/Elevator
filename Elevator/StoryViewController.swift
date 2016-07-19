@@ -6,7 +6,7 @@ final class StoryViewController: UIViewController {
 	var story: Story? {
 		didSet {
 			navigationItem.title = story?.name
-			story?.doors.delegate = self
+			story?.doors.doorsDidChangeState = refreshEnterButtonState
 		}
 	}
 
@@ -48,11 +48,5 @@ final class StoryViewController: UIViewController {
 	func reloadData() {
 		refreshEnterButtonState()
 		updateDisplayText()
-	}
-}
-
-extension StoryViewController: DoorsDelegate {
-	func doorsDidChangeState(doors: Doors) {
-		refreshEnterButtonState()
 	}
 }

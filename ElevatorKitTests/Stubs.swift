@@ -1,6 +1,14 @@
 @testable import ElevatorKit
 
 class StubElevatorControllerDataSource: ElevatorControllerDataSource {
+	var doors = Doors(state: .Closed)
+	var abbreviation = ""
+	var externalPanel = ExternalPanel()
+	var numberOfLevels = 3
+	var cabinPanel = CabinPanel()
+	var defaultLevel = 0
+	var cabin = Cabin(level: 0)
+
 	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
 		return Doors(state: .Closed)
 	}
@@ -23,6 +31,10 @@ class StubElevatorControllerDataSource: ElevatorControllerDataSource {
 
 	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin {
 		return Cabin(level: 0)
+	}
+
+	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level {
+		return defaultLevel
 	}
 }
 

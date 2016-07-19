@@ -10,14 +10,28 @@ public final class Cabin {
 
 	internal enum State {
 		case Stopped(Level)
-		case Moving(Level)
+		case MovingUp(Level)
+		case MovingDown(Level)
 
 		var level: Level {
 			switch self {
-			case .Stopped(let s):
-				return s
-			case .Moving(let s):
-				return s
+			case .Stopped(let l):
+				return l
+			case .MovingUp(let l):
+				return l
+			case .MovingDown(let l):
+				return l
+			}
+		}
+
+		var arrow: String {
+			switch self {
+			case .MovingUp:
+				return "↑"
+			case .MovingDown:
+				return "↓"
+			case .Stopped:
+				return ""
 			}
 		}
 	}
@@ -30,10 +44,7 @@ public final class Cabin {
 		didSet {
 			previousStates.append(oldValue)
 			if state != oldValue {
-				dispatch_async(dispatch_get_main_queue()) { [weak self] in
-					guard let s = self else { return }
-					s.delegate?.cabinDidChangeState(s)
-				}
+				delegate?.cabinDidChangeState(self)
 			}
 		}
 	}
@@ -51,7 +62,9 @@ func ==(lhs: Cabin.State, rhs: Cabin.State) -> Bool {
 	switch (lhs, rhs) {
 	case (.Stopped(let leftLevel), .Stopped(let rightLevel)):
 		return leftLevel == rightLevel
-	case (.Moving(let leftLevel), .Moving(let rightLevel)):
+	case (.MovingUp(let leftLevel), .MovingUp(let rightLevel)):
+		return leftLevel == rightLevel
+	case (.MovingDown(let leftLevel), .MovingDown(let rightLevel)):
 		return leftLevel == rightLevel
 	default:
 		return false

@@ -14,8 +14,8 @@ class CabinSpecs: QuickSpec {
 				let cabin = Cabin(level: 0)
 				let delegate = TestCabinDelegate()
 				cabin.delegate = delegate
-				cabin.state = .Moving(3)
-				expect(delegate.cabinDidChangeStateWasCalled).to(beTrue())
+				cabin.state = .MovingUp(3)
+				expect(delegate.cabinDidChangeStateWasCalled).toEventually(beTrue())
 			}
 
 			it("should not the right delegate method when state is changed") {
@@ -28,7 +28,7 @@ class CabinSpecs: QuickSpec {
 
 			context("when it’s moving") {
 				let cabin = Cabin(level: 0)
-				cabin.state = .Moving(5)
+				cabin.state = .MovingUp(5)
 
 				it("should have the correct current level") {
 					expect(cabin.currentLevel).to(equal(5))
@@ -47,11 +47,11 @@ class CabinSpecs: QuickSpec {
 
 		describe("cabin states") {
 			it("should be different when one is moving and the other one stopped") {
-				expect(Cabin.State.Moving(1)).toNot(equal(Cabin.State.Stopped(1)))
+				expect(Cabin.State.MovingUp(1)).toNot(equal(Cabin.State.Stopped(1)))
 			}
 
 			it("should be different when both are moving but in different levels") {
-				expect(Cabin.State.Moving(1)).toNot(equal(Cabin.State.Moving(2)))
+				expect(Cabin.State.MovingUp(1)).toNot(equal(Cabin.State.MovingUp(2)))
 			}
 
 			it("should be different when both are stopped but in different levels") {
@@ -59,7 +59,7 @@ class CabinSpecs: QuickSpec {
 			}
 
 			it("should be different when both are moving in the same levels") {
-				expect(Cabin.State.Moving(1)).to(equal(Cabin.State.Moving(1)))
+				expect(Cabin.State.MovingUp(1)).to(equal(Cabin.State.MovingUp(1)))
 			}
 
 			it("should be different when both are moving in the same levels") {
