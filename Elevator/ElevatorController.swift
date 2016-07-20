@@ -131,6 +131,9 @@ public final class ElevatorController {
 
 extension ElevatorController: FloorControllerDelegate {
 	func floorControllerDidCall(floorController: FloorController) {
+		if mode == .Janitor {
+			return
+		}
 		guard let level = floorControllers.indexOf({$0 === floorController}) else { return }
 		call(level)
 	}
