@@ -9,6 +9,8 @@ internal protocol CabinPanelDataSource {
 	func displayedTextForCabinPanel(cabinPanel: CabinPanel) -> String
 }
 
+/// An instance of `CabinPanel` represents the physical panel that is users can
+/// handle inside the cabin.
 public final class CabinPanel {
 	internal var delegate: CabinPanelDelegate?
 
@@ -18,14 +20,23 @@ public final class CabinPanel {
 		}
 	}
 
+	/**
+	Calls the cabin from a particular index.
+
+	- parameter index: The index from which the cabin has been called.
+	*/
 	public func call(levelAtIndex index: Int) {
 		delegate?.cabinPanel(self, didCallLevel: index)
 	}
 
+	/**
+	Toggles the janitor mode.
+	*/
 	public func toggleJanitorMode() {
 		isJanitorModeEnabled = !isJanitorModeEnabled
 	}
 
+	/// Indicates whether or not the janitor mode is enabled.
 	internal(set) public var isJanitorModeEnabled = false {
 		didSet {
 			if isJanitorModeEnabled != oldValue {
@@ -34,6 +45,7 @@ public final class CabinPanel {
 		}
 	}
 
+	/// Indicates whether or not the janitor mode is available.
 	internal(set) public var isJanitorModeAvailable = true {
 		didSet {
 			if isJanitorModeAvailable != oldValue {
@@ -42,6 +54,7 @@ public final class CabinPanel {
 		}
 	}
 
+	/// Indicates the text that is currently displayed by the panel.
 	internal(set) public var displayedText = "" {
 		didSet {
 			if displayedText != oldValue {
@@ -50,19 +63,24 @@ public final class CabinPanel {
 		}
 	}
 
+	/// A function that is called every time the displayed text changes.
 	public var displayedTextDidChange: () -> () = {}
 
+	/// A function that is called every time the janitor mode is toggled.
 	public var janitorModeDidChange: () -> () = {}
 
+	/// A function that is called every time the availability of the janitor mode changes.
 	public var janitorModeAvailabilityDidChange: () -> () = {}
 
-	private(set) public var numberOfLevels = 0
+	/**
+	Creates an instance of a cabin panel.
 
+	- returns: The new instance.
+	*/
 	public init() {}
 
 	internal func reloadData() {
 		guard let dataSource = dataSource else { return }
-		numberOfLevels = dataSource.numberOfLevelsForCabinPanel(self)
 		displayedText = dataSource.displayedTextForCabinPanel(self)
 	}
 }

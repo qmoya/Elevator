@@ -14,7 +14,7 @@
     <a title="ElevatorControllerDataSource Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (6% documented)</p>
+        <p><a href="../index.html"> Docs</a> (89% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -40,13 +40,7 @@
                 <a href="../Classes/Doors.html">Doors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Doors/State.html">– State</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/ElevatorController.html">ElevatorController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/ElevatorController/Mode.html">– Mode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ExternalPanel.html">ExternalPanel</a>
@@ -197,16 +191,41 @@ data model for an <code><a href="../Classes/ElevatorController.html">ElevatorCon
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the data source for a cabin panel to manage.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">cabinPanelForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CabinPanel.html">CabinPanel</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The cabin panel to be managed by the elevator.</p>
+
                       </div>
                     </section>
                   </div>
@@ -224,16 +243,55 @@ data model for an <code><a href="../Classes/ElevatorController.html">ElevatorCon
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the data source for the abbreviation that represents a level at a particular index.
+The abbreviation is used by <code><a href="../Classes/CabinPanel.html">CabinPanel</a></code>s and <code><a href="../Classes/ExternalPanel.html">ExternalPanel</a></code>s.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">abbreviationForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the abbreviation.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the level.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A string with an abbreviated name that will be used when displaying the level inside a panel.</p>
+
                       </div>
                     </section>
                   </div>
@@ -251,16 +309,54 @@ data model for an <code><a href="../Classes/ElevatorController.html">ElevatorCon
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the data source for the <code><a href="../Classes/Doors.html">Doors</a></code> the elevator controller will manage at a particular level.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">doorsForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Doors.html">Doors</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the doors.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the level at which the doors are located.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The doors to be managed.</p>
+
                       </div>
                     </section>
                   </div>
@@ -278,16 +374,54 @@ data model for an <code><a href="../Classes/ElevatorController.html">ElevatorCon
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the data source for the <code><a href="../Classes/CabinPanel.html">CabinPanel</a></code> that the controller will manage at a particular floor.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">panelForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ExternalPanel.html">ExternalPanel</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the external panel.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the level at which the panel is located.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The panel to be managed.</p>
+
                       </div>
                     </section>
                   </div>
@@ -305,16 +439,41 @@ data model for an <code><a href="../Classes/ElevatorController.html">ElevatorCon
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Asks the data source for the index of the level at which the cabin will be located by default.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">defaultCabinLevelForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the default cabin level.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index of the level.</p>
+
                       </div>
                     </section>
                   </div>

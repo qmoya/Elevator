@@ -14,7 +14,7 @@
     <a title="ElevatorController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (6% documented)</p>
+        <p><a href="../index.html"> Docs</a> (89% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -40,13 +40,7 @@
                 <a href="../Classes/Doors.html">Doors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Doors/State.html">– State</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/ElevatorController.html">ElevatorController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/ElevatorController/Mode.html">– Mode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ExternalPanel.html">ExternalPanel</a>
@@ -67,7 +61,14 @@
         <section>
           <section class="section">
             <h1>ElevatorController</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ElevatorController</span></code></pre>
+
+                </div>
+              </div>
+            <p>An instance of <code>ElevatorController</code> coordinates the different objects that compose a particular
+elevator setup.</p>
 
           </section>
           <section class="section task-group-section">
@@ -86,8 +87,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The cabin managed by the controller.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">cabin</span><span class="p">:</span> <span class="kt"><a href="../Classes/Cabin.html">Cabin</a></span><span class="o">!</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -105,28 +114,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The cabin panel managed by the controller.</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:OC11ElevatorKit18ElevatorController4Mode"></a>
-                    <a name="//apple_ref/swift/Enum/Mode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC11ElevatorKit18ElevatorController4Mode">Mode</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">cabinPanel</span><span class="p">:</span> <span class="kt"><a href="../Classes/CabinPanel.html">CabinPanel</a></span><span class="o">!</span></code></pre>
 
-                        <a href="../Classes/ElevatorController/Mode.html" class="slightly-smaller">See more</a>
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -144,8 +141,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An instance of <code><a href="../Protocols/ElevatorControllerDataSource.html">ElevatorControllerDataSource</a></code> that provides
+the elevator controller with all the data it needs.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ElevatorControllerDataSource.html">ElevatorControllerDataSource</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -163,26 +169,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes the instance with a data source.</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC11ElevatorKit18ElevatorController8loadDataFT_T_"></a>
-                    <a name="//apple_ref/swift/Method/loadData()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11ElevatorKit18ElevatorController8loadDataFT_T_">loadData()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ElevatorControllerDataSource.html">ElevatorControllerDataSource</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataSource</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The data source that the controller will use to set up itself.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A ready-to-use instance of the controller.</p>
 
                       </div>
                     </section>

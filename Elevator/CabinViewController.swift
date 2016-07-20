@@ -69,7 +69,8 @@ class CabinViewController: UIViewController {
 	}
 
 	private func updateExitButton() {
-		navigationItem.rightBarButtonItem?.enabled = cabin?.doors?.state == .Open
+		guard let doors = cabin?.doors else { return }
+		navigationItem.rightBarButtonItem?.enabled = doors.areOpen
 	}
 
 	private func updateDisplayView() {

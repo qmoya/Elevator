@@ -26,7 +26,7 @@ struct Building {
 	}
 
 	func areDoorsOpenAtCurrentCabinLevel() -> Bool {
-		return stories[cabin.indexOfCurrentStory].doors.state == .Open
+		return stories[cabin.indexOfCurrentStory].doors.areOpen
 	}
 
 	func doorsForStoryAtIndex(index: Int) -> Doors {

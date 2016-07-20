@@ -77,8 +77,10 @@ public protocol ElevatorControllerDataSource {
 /// An instance of `ElevatorController` coordinates the different objects that compose a particular
 /// elevator setup.
 public final class ElevatorController {
+	/// The cabin managed by the controller.
 	private(set) public var cabin: Cabin!
 
+	/// The cabin panel managed by the controller.
 	private(set) public var cabinPanel: CabinPanel!
 
 	internal enum Mode {
@@ -107,8 +109,17 @@ public final class ElevatorController {
 		}
 	}
 
+	/// An instance of `ElevatorControllerDataSource` that provides
+	/// the elevator controller with all the data it needs.
 	public let dataSource: ElevatorControllerDataSource
 
+	/**
+	Initializes the instance with a data source.
+
+	- parameter dataSource: The data source that the controller will use to set up itself.
+
+	- returns: A ready-to-use instance of the controller.
+	*/
 	public init(dataSource: ElevatorControllerDataSource) {
 		self.dataSource = dataSource
 		operationQueue.maxConcurrentOperationCount = 1
@@ -158,7 +169,7 @@ public final class ElevatorController {
 		cabinPanel.delegate = self
 	}
 
-	public func loadData() {
+	private func loadData() {
 		loadCabin()
 		loadFloorControllers()
 		loadCabinPanel()

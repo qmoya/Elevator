@@ -29,7 +29,8 @@ final class StoryViewController: UIViewController {
 	}
 
 	private func refreshEnterButtonState() {
-		self.navigationItem.rightBarButtonItem?.enabled = story?.doors.state == .Open
+		guard let doors = story?.doors else { return }
+		self.navigationItem.rightBarButtonItem?.enabled = doors.areOpen
 	}
 
 	private func reloadData() {

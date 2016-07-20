@@ -5,7 +5,7 @@ class Story {
 	let abbreviation: String
 	let backgroundImageName: String
 
-	let doors = Doors(state: .Closed)
+	let doors = Doors()
 	let panel = ExternalPanel()
 
 	init(name: String, abbreviation: String, backgroundImageName: String) {

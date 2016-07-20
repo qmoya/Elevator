@@ -14,7 +14,7 @@
     <a title="Cabin Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (6% documented)</p>
+        <p><a href="../index.html"> Docs</a> (89% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -40,13 +40,7 @@
                 <a href="../Classes/Doors.html">Doors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Doors/State.html">– State</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/ElevatorController.html">ElevatorController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/ElevatorController/Mode.html">– Mode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ExternalPanel.html">ExternalPanel</a>
@@ -67,7 +61,13 @@
         <section>
           <section class="section">
             <h1>Cabin</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Cabin</span></code></pre>
+
+                </div>
+              </div>
+            <p>An instance of <code>Cabin</code> represents the movable component in an elevator setup.</p>
 
           </section>
           <section class="section task-group-section">
@@ -86,7 +86,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates an instance of a cabin.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The new instance.</p>
 
                       </div>
                     </section>
@@ -105,8 +118,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A function that will be called whenever the cabin starts or stops moving.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">didChangeState</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="o">=</span> <span class="p">{}</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -124,8 +145,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An integer representing the level at which the cabin is located.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">indexOfCurrentStory</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -143,8 +172,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The <code><a href="../Classes/Doors.html">Doors</a></code> instance that is currently visible from inside the cabin.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">doors</span><span class="p">:</span> <span class="kt"><a href="../Classes/Doors.html">Doors</a></span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
