@@ -48,15 +48,41 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pink" translatesAutoresizingMaskIntoConstraints="NO" id="Bi9-4e-pSA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDe-l3-aE0">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <state key="normal" title="Call"/>
-                                <connections>
-                                    <action selector="call:" destination="9iC-D3-oxj" eventType="touchUpInside" id="IC4-sa-1jB"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxu-X7-brO">
+                                <rect key="frame" x="180" y="468" width="240" height="44"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uc1-S2-oBh">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Bc-aE-qe1">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDe-l3-aE0">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                        <state key="normal" title="Call"/>
+                                        <connections>
+                                            <action selector="call:" destination="9iC-D3-oxj" eventType="touchUpInside" id="IC4-sa-1jB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Uc1-S2-oBh" firstAttribute="top" secondItem="zxu-X7-brO" secondAttribute="top" id="1Gl-f0-XNA"/>
+                                    <constraint firstAttribute="width" constant="240" id="5cR-a3-xL0"/>
+                                    <constraint firstItem="UDe-l3-aE0" firstAttribute="leading" secondItem="zxu-X7-brO" secondAttribute="leading" id="5k7-hJ-fTK"/>
+                                    <constraint firstAttribute="trailing" secondItem="UDe-l3-aE0" secondAttribute="trailing" id="CQV-dR-BIS"/>
+                                    <constraint firstAttribute="height" constant="44" id="GfI-Q3-67C"/>
+                                    <constraint firstItem="UDe-l3-aE0" firstAttribute="top" secondItem="zxu-X7-brO" secondAttribute="top" id="PUC-NK-p9h"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uc1-S2-oBh" secondAttribute="bottom" id="Vtm-8z-3qJ"/>
+                                    <constraint firstItem="Uc1-S2-oBh" firstAttribute="leading" secondItem="zxu-X7-brO" secondAttribute="leading" id="lzp-aE-zbs"/>
+                                    <constraint firstAttribute="bottom" secondItem="UDe-l3-aE0" secondAttribute="bottom" id="mjU-sn-fE8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uc1-S2-oBh" secondAttribute="trailing" id="zS7-8q-UKZ"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsl-Rs-rbN" userLabel="Panel" customClass="DisplayView" customModule="Elevator" customModuleProvider="target">
-                                <rect key="frame" x="180" y="68" width="240" height="120"/>
+                                <rect key="frame" x="180" y="90" width="240" height="120"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpG-rl-9K2">
                                         <rect key="frame" x="-13" y="18" width="266" height="92"/>
@@ -93,17 +119,17 @@
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Bi9-4e-pSA" secondAttribute="trailing" id="3b1-OQ-UGf"/>
+                            <constraint firstItem="16I-nC-MGH" firstAttribute="top" secondItem="zxu-X7-brO" secondAttribute="bottom" constant="88" id="6Oa-49-dtz"/>
                             <constraint firstItem="Bi9-4e-pSA" firstAttribute="leading" secondItem="kzh-t1-r5r" secondAttribute="leading" id="ELI-QW-7W4"/>
+                            <constraint firstItem="zxu-X7-brO" firstAttribute="centerX" secondItem="kzh-t1-r5r" secondAttribute="centerX" id="IRW-TQ-Bhf"/>
                             <constraint firstItem="nsl-Rs-rbN" firstAttribute="centerX" secondItem="kzh-t1-r5r" secondAttribute="centerX" id="Jfi-qD-8rK"/>
-                            <constraint firstItem="nsl-Rs-rbN" firstAttribute="top" secondItem="Tha-He-ZQs" secondAttribute="bottom" constant="48" id="KXs-Wq-X56"/>
+                            <constraint firstItem="nsl-Rs-rbN" firstAttribute="top" secondItem="Tha-He-ZQs" secondAttribute="bottom" constant="70" id="KXs-Wq-X56"/>
                             <constraint firstItem="Bi9-4e-pSA" firstAttribute="top" secondItem="kzh-t1-r5r" secondAttribute="top" id="Sk3-gy-gkS"/>
-                            <constraint firstItem="UDe-l3-aE0" firstAttribute="centerX" secondItem="kzh-t1-r5r" secondAttribute="centerX" id="dha-BL-VMq"/>
                             <constraint firstItem="16I-nC-MGH" firstAttribute="top" secondItem="Bi9-4e-pSA" secondAttribute="bottom" id="fmY-Km-bhV"/>
-                            <constraint firstItem="UDe-l3-aE0" firstAttribute="centerY" secondItem="kzh-t1-r5r" secondAttribute="centerY" id="wKm-bx-nrF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="WUh-Z5-Qb7">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Enter" id="bl8-h3-JAq">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Get In" id="bl8-h3-JAq">
                             <connections>
                                 <action selector="enter:" destination="9iC-D3-oxj" id="znD-Wf-LlF"/>
                             </connections>
@@ -302,7 +328,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Gi-0y-6oE">
-                        <barButtonItem key="rightBarButtonItem" title="Exit" id="QHK-Lc-USq">
+                        <barButtonItem key="rightBarButtonItem" title="Get Out" id="QHK-Lc-USq">
                             <connections>
                                 <action selector="exit:" destination="zho-Pa-81D" id="gf6-o7-bg1"/>
                             </connections>
@@ -324,4 +350,5 @@
         <image name="KeyFilled" width="375" height="375"/>
         <image name="Pink" width="375" height="667"/>
     </resources>
+    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
 </document>
