@@ -11,6 +11,7 @@ internal protocol CabinPanelDataSource {
 
 public final class CabinPanel {
 	internal var delegate: CabinPanelDelegate?
+	
 	internal var dataSource: CabinPanelDataSource? {
 		didSet {
 			reloadData()

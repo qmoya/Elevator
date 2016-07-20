@@ -1,19 +1,19 @@
-protocol FloorControllerDelegate {
+internal protocol FloorControllerDelegate {
 	func floorControllerDidCall(floorController: FloorController)
 }
 
-protocol FloorControllerDataSource {
+internal protocol FloorControllerDataSource {
 	func displayedTextForFloorController(floorController: FloorController) -> String
 }
 
 internal final class FloorController {
-	let doors: Doors
+	internal let doors: Doors
 
-	let delegate: FloorControllerDelegate
+	internal let delegate: FloorControllerDelegate
 
-	let dataSource: FloorControllerDataSource
+	internal let dataSource: FloorControllerDataSource
 
-	let externalPanel: ExternalPanel
+	internal let externalPanel: ExternalPanel
 	
 	init(doors: Doors, panel: ExternalPanel, delegate: FloorControllerDelegate, dataSource: FloorControllerDataSource) {
 		self.doors = doors
@@ -24,12 +24,12 @@ internal final class FloorController {
 		self.externalPanel.dataSource = self
 	}
 
-	func reloadData() {
+	internal func reloadData() {
 		externalPanel.reloadData()
 	}
 
-	internal func closeDoorsOperation() -> CloseDoorsOperation {
-		return CloseDoorsOperation(doors: doors, timeInterval: 1)
+	internal func closeDoorsOperation(timeInterval: NSTimeInterval) -> CloseDoorsOperation {
+		return CloseDoorsOperation(doors: doors, timeInterval: timeInterval)
 	}
 }
 

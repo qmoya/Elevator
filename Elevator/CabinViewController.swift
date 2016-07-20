@@ -12,45 +12,13 @@ class CabinViewController: UIViewController {
 		didSet {
 			guard let panel = panel else { return }
 			panel.displayedTextDidChange = updateDisplayView
-			panel.janitorModeDidChange = updateJanitorButtonSelected
-			panel.janitorModeAvailabilityDidChange = updateJanitorButtonEnabled
+			panel.janitorModeDidChange = updateSelectionOfJanitorButton
+			panel.janitorModeAvailabilityDidChange = updateEnablementOfJanitorButton
 		}
 	}
 
 	var didTapExit: () -> () = {}
 	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		refresh()
-	}
-
-	func refresh() {
-		cabin?.doors?.didChangeInteriorState = updateExitButton
-		updateDisplayView()
-		updateJanitorButtonEnabled()
-		updateJanitorButtonSelected()
-	}
-
-	func updateExitButton() {
-		print("updating exit button for \(cabin?.doors?.state == .Open)")
-		navigationItem.rightBarButtonItem?.enabled = cabin?.doors?.state == .Open
-	}
-	
-	func updateDisplayView() {
-		guard let panel = panel else { return }
-		displayView.viewData = DisplayView.ViewData(cabinPanel: panel)
-	}
-
-	func updateJanitorButtonEnabled() {
-		guard let panel = panel else { return }
-		janitorButton.enabled = panel.isJanitorModeAvailable
-	}
-
-	func updateJanitorButtonSelected() {
-		guard let panel = panel else { return }
-		janitorButton.selected = panel.isJanitorModeEnabled
-	}
-
 	@IBOutlet weak var displayView: DisplayView!
 
 	@IBOutlet weak var janitorButton: UIButton!
@@ -63,11 +31,6 @@ class CabinViewController: UIViewController {
 		didTapExit()
 	}
 
-	func call(level: Level) {
-		guard let panel = panel else { return }
-		panel.call(level)
-	}
-
 	@IBAction func goToBasementWithSender(sender: AnyObject) {
 		call(0)
 	}
@@ -76,7 +39,6 @@ class CabinViewController: UIViewController {
 		call(1)
 	}
 
-	// FIXME: remove "Button" from name
 	@IBAction func goToFirstFloorWithSender(sender: AnyObject) {
 		call(2)
 	}
@@ -99,5 +61,44 @@ class CabinViewController: UIViewController {
 
 	@IBAction func goToSixthFloorWithSender(sender: AnyObject) {
 		call(7)
+	}
+	
+	private func call(level: Level) {
+		guard let panel = panel else { return }
+		panel.call(level)
+	}
+	
+	private func updateExitButton() {
+		print("updating exit button for \(cabin?.doors?.state == .Open)")
+		navigationItem.rightBarButtonItem?.enabled = cabin?.doors?.state == .Open
+	}
+	
+	private func updateDisplayView() {
+		guard let panel = panel else { return }
+		displayView.viewData = DisplayView.ViewData(cabinPanel: panel)
+	}
+	
+	private func updateEnablementOfJanitorButton() {
+		guard let panel = panel else { return }
+		janitorButton.enabled = panel.isJanitorModeAvailable
+	}
+	
+	private func updateSelectionOfJanitorButton() {
+		guard let panel = panel else { return }
+		janitorButton.selected = panel.isJanitorModeEnabled
+	}
+	
+	private func refresh() {
+		cabin?.doors?.didChangeInteriorState = updateExitButton
+		updateDisplayView()
+		updateEnablementOfJanitorButton()
+		updateSelectionOfJanitorButton()
+	}
+}
+
+extension CabinViewController /* UIViewController */ {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		refresh()
 	}
 }

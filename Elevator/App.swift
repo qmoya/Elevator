@@ -35,40 +35,34 @@ final class App {
 		configureStoriesViewController()
 	}
 	
-	func configureStoriesViewController() {
-		buildingViewController.initialStoryViewController = initialStoryViewController
+	private func configureStoriesViewController() {
+		buildingViewController.storyViewController = storyViewControllerForStory(building.defaultStory)!
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
 		buildingViewController.storyViewControllerAboveStoryViewController = storyViewControllerAboveStoryViewController
-		buildingViewController.didChangeStoryViewController = updateNavigationBarForStoryViewController
 	}
 
-	func initialStoryViewController() -> StoryViewController {
+	private func initialStoryViewController() -> StoryViewController {
 		return storyViewControllerForStory(building.stories[1])!
 	}
 
-	func storyViewControllerBelowStoryViewController(storyViewController: StoryViewController) -> StoryViewController? {
+	private func storyViewControllerBelowStoryViewController(storyViewController: StoryViewController) -> StoryViewController? {
 		guard let story = storyViewController.story, storyBelow = building.storyBelowStory(story) else { return nil }
 		return storyViewControllerForStory(storyBelow)
 	}
 
-	func storyViewControllerAboveStoryViewController(storyViewController: StoryViewController) -> StoryViewController? {
+	private func storyViewControllerAboveStoryViewController(storyViewController: StoryViewController) -> StoryViewController? {
 		guard let story = storyViewController.story, storyAbove = building.storyAboveStory(story) else { return nil }
 		return storyViewControllerForStory(storyAbove)
 	}
 
-	func storyViewControllerForStory(story: Story) -> StoryViewController? {
+	private func storyViewControllerForStory(story: Story) -> StoryViewController? {
 		guard let viewController = storyboard.instantiateViewControllerWithIdentifier("StoryViewControllerStoryboardIdentifier") as? StoryViewController else { fatalError() }
 		viewController.story = story
 		viewController.didTapEnter = showElevator
 		return viewController
 	}
 
-	func updateNavigationBarForStoryViewController(storyViewController: StoryViewController) {
-		buildingViewController.navigationItem.title = storyViewController.navigationItem.title
-		buildingViewController.navigationItem.rightBarButtonItem = storyViewController.navigationItem.rightBarButtonItem
-	}
-
-	func instantiateCabinNavigationController() -> UINavigationController {
+	private func instantiateCabinNavigationController() -> UINavigationController {
 		guard let navigationController = storyboard.instantiateViewControllerWithIdentifier("ElevatorNavigationControllerStoryboardIdentifier") as? UINavigationController,
 			elevatorViewController = navigationController.topViewController as? CabinViewController
 			else { fatalError("couldn't find expected view controllers") }
@@ -78,18 +72,17 @@ final class App {
 		return navigationController
 	}
 
-	func showElevator() {
+	private func showElevator() {
 		let navigationController = instantiateCabinNavigationController()
 		navigationController.modalPresentationStyle = .FormSheet
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
 
-	func exitElevator() {
+	private func exitElevator() {
 		let level = building.cabin.currentLevel
 		let story = building.stories[level]
 		if let viewController = storyViewControllerForStory(story) {
-			buildingViewController.setViewControllers([viewController], direction: .Forward, animated: false, completion: nil)
-			updateNavigationBarForStoryViewController(viewController)
+			buildingViewController.storyViewController = viewController
 		}
 		navigationController.dismissViewControllerAnimated(true, completion: nil)
 	}

@@ -9,6 +9,10 @@ public final class Cabin {
 	}
 
 	public var didChangeState: () -> () = {}
+	
+	public var currentLevel: Level {
+		return state.level
+	}
 
 	internal enum State {
 		case Stopped(Level)
@@ -52,17 +56,13 @@ public final class Cabin {
 			}
 		}
 	}
-
-	public var currentLevel: Level {
-		return state.level
-	}
 }
 
 extension Cabin.State: Equatable {}
 
 // MARK: Equatable
 
-func ==(lhs: Cabin.State, rhs: Cabin.State) -> Bool {
+internal func ==(lhs: Cabin.State, rhs: Cabin.State) -> Bool {
 	switch (lhs, rhs) {
 	case (.Stopped(let leftLevel), .Stopped(let rightLevel)):
 		return leftLevel == rightLevel

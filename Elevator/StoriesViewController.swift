@@ -3,25 +3,32 @@ import ElevatorKit
 
 class StoriesViewController: UIPageViewController {
 
-	var didChangeStoryViewController: (StoryViewController) -> () = { _ in }
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		dataSource = self
+		delegate = self
+	}
 
 	var storyViewControllerAboveStoryViewController: (StoryViewController) -> (StoryViewController?) = { _ in return nil }
 
 	var storyViewControllerBelowStoryViewController: (StoryViewController) -> (StoryViewController?) = { _ in return nil }
-
-	var initialStoryViewController: () -> (StoryViewController) = { _ in return StoryViewController() } // TODO: Perhaps should be simply a variable
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		let initial = initialStoryViewController()
-		setViewControllers([initial], direction: .Forward, animated: true, completion: nil)
-		didChangeStoryViewController(initial)
+	
+	var storyViewController: StoryViewController {
+		set {
+			setViewControllers([newValue], direction: .Forward, animated: false, completion: nil)
+			updateNavigationBarForStoryViewController(newValue)
+		}
+		get {
+			guard let viewControllers = viewControllers, last = viewControllers.last as? StoryViewController else {
+				fatalError("couldn't get story view controller")
+			}
+			return last
+		}
 	}
-
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		dataSource = self // TODO: can't set it in the storyboard — check why
-		delegate = self
+	
+	private func updateNavigationBarForStoryViewController(storyViewController: StoryViewController) {
+		navigationItem.title = storyViewController.navigationItem.title
+		navigationItem.rightBarButtonItem = storyViewController.navigationItem.rightBarButtonItem
 	}
 }
 
@@ -40,8 +47,6 @@ extension StoriesViewController: UIPageViewControllerDataSource {
 extension StoriesViewController: UIPageViewControllerDelegate {
 	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 		if !completed { return }
-		if let viewControllers = viewControllers, last = viewControllers.last as? StoryViewController {
-			didChangeStoryViewController(last)
-		}
+		updateNavigationBarForStoryViewController(storyViewController)
 	}
 }

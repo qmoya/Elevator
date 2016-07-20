@@ -9,6 +9,10 @@ struct Building {
 
 	let cabinPanel = CabinPanel()
 	
+	var defaultStory: Story {
+		return stories[defaultLevel]
+	}
+	
 	func storyAboveStory(story: Story) -> Story? {
 		guard let index = stories.indexOf({$0 === story}) else { return nil }
 		if index == stories.count-1 { return nil }

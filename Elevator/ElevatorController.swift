@@ -52,25 +52,18 @@ public final class ElevatorController {
 	internal var floorControllers = [FloorController]()
 
 	internal let operationQueue = NSOperationQueue()
-
+	
 	internal func call(destination: Level) {
 		if mode == .Janitor {
-			cabin.state = .Stopped(destination)
+			synchronousCall(destination)
 			return
 		}
-		isJanitorModeAvailable = false
-		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: 2)
-		for close in floorControllers.map({$0.closeDoorsOperation()}) {
-			move.addDependency(close)
-			operationQueue.addOperation(close)
-		}
-		let open = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: 1)
-		open.addDependency(move)
-		open.completionBlock = { [weak self] in
-			self?.isJanitorModeAvailable = true
-		}
-		operationQueue.addOperations([move, open], waitUntilFinished: false)
+		asynchronousCall(destination)
 	}
+	
+	private var timeIntervalForDoorsOperation: NSTimeInterval = 1
+	
+	private var timeIntervalForMoveOperation: NSTimeInterval = 2
 
 	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
@@ -126,6 +119,29 @@ public final class ElevatorController {
 		let arrow = cabin.state.arrow
 		let abbreviation = dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
 		return "\(arrow) \(abbreviation)"
+	}
+	
+	private func synchronousCall(destination: Level) {
+		for doors in floorControllers.map({$0.doors}) {
+			doors.state = .Closed
+		}
+		cabin.state = .Stopped(destination)
+		floorControllers[destination].doors.state = .Open
+	}
+	
+	private func asynchronousCall(destination: Level) {
+		isJanitorModeAvailable = false
+		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: timeIntervalForMoveOperation)
+		for close in floorControllers.map({$0.closeDoorsOperation(timeIntervalForDoorsOperation)}) {
+			move.addDependency(close)
+			operationQueue.addOperation(close)
+		}
+		let open = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: timeIntervalForDoorsOperation)
+		open.addDependency(move)
+		open.completionBlock = { [weak self] in
+			self?.isJanitorModeAvailable = true
+		}
+		operationQueue.addOperations([move, open], waitUntilFinished: false)
 	}
 }
 

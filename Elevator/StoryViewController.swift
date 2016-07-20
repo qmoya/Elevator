@@ -15,6 +15,30 @@ final class StoryViewController: UIViewController {
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!
 
+	@IBAction func call(sender: AnyObject) {
+		story?.panel.call()
+	}
+	
+	@IBAction func enter(sender: AnyObject) {
+		didTapEnter()
+	}
+
+	private func updateDisplayText() {
+		guard let panel = story?.panel else { return }
+		displayView.viewData = DisplayView.ViewData(externalPanel: panel)
+	}
+
+	private func refreshEnterButtonState() {
+		self.navigationItem.rightBarButtonItem?.enabled = story?.doors.state == .Open
+	}
+	
+	private func reloadData() {
+		refreshEnterButtonState()
+		updateDisplayText()
+	}
+}
+
+extension StoryViewController /* UIViewController */ {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		backgroundImageView.image = UIImage(named: story!.backgroundImageName)
@@ -25,27 +49,5 @@ final class StoryViewController: UIViewController {
 		super.viewWillAppear(animated)
 		story?.doors.didChangeExteriorState = refreshEnterButtonState
 		reloadData()
-	}
-
-	@IBAction func call(sender: AnyObject) {
-		story?.panel.call()
-	}
-
-	func updateDisplayText() {
-		guard let panel = story?.panel else { return }
-		displayView.viewData = DisplayView.ViewData(externalPanel: panel)
-	}
-
-	@IBAction func enter(sender: AnyObject) {
-		didTapEnter()
-	}
-
-	func refreshEnterButtonState() {
-		self.navigationItem.rightBarButtonItem?.enabled = story?.doors.state == .Open
-	}
-	
-	func reloadData() {
-		refreshEnterButtonState()
-		updateDisplayText()
 	}
 }
