@@ -11,20 +11,44 @@ final class StoryViewController: UIViewController {
 
 	var didTapEnter: () -> () = {}
 
-	var elevatorController: ElevatorController?
+	@IBOutlet weak var displayView: DisplayView!
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Enter", style: .Plain, target: self, action: #selector(enter))
+	@IBOutlet weak var backgroundImageView: UIImageView!
 
+	@IBAction func call(sender: AnyObject) {
+		story?.panel.call()
 	}
 
-	func enter(sender: AnyObject) {
+	@IBAction func enter(sender: AnyObject) {
 		didTapEnter()
 	}
 
-	@IBAction func call(sender: AnyObject) {
-		print("elevator called on the \(story?.name)")
-		elevatorController?.call(from: self.story!)
+	private func updateDisplayText() {
+		guard let panel = story?.panel else { return }
+		displayView.viewData = DisplayView.ViewData(externalPanel: panel)
+	}
+
+	private func refreshEnterButtonState() {
+		guard let doors = story?.doors else { return }
+		self.navigationItem.rightBarButtonItem?.enabled = doors.areOpen
+	}
+
+	private func reloadData() {
+		refreshEnterButtonState()
+		updateDisplayText()
+	}
+}
+
+extension StoryViewController /* UIViewController */ {
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		backgroundImageView.image = UIImage(named: story!.backgroundImageName)
+		story?.panel.displayedTextDidChange = updateDisplayText
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		story?.doors.didChangeExteriorState = refreshEnterButtonState
+		reloadData()
 	}
 }

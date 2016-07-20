@@ -1,21 +1,16 @@
-import Foundation
+import ElevatorKit
 
-public struct Story {
-	public let name: String
-	public let abbreviation: String
+class Story {
+	let name: String
+	let abbreviation: String
+	let backgroundImageName: String
 
-	public let doors = Doors()
+	let doors = Doors()
+	let panel = ExternalPanel()
 
-	public init(name: String, abbreviation: String) {
+	init(name: String, abbreviation: String, backgroundImageName: String) {
 		self.name = name
 		self.abbreviation = abbreviation
+		self.backgroundImageName = backgroundImageName
 	}
-}
-
-extension Story: Equatable {}
-
-// MARK: Equatable
-
-public func ==(lhs: Story, rhs: Story) -> Bool {
-	return lhs.abbreviation == rhs.abbreviation
 }
