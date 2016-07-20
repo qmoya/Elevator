@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ElevatorControllerDataSource Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/ElevatorControllerDataSource" class="dashAnchor"></a>
+    <a title="ElevatorControllerDataSource Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (89% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ElevatorControllerDataSource Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Cabin.html">Cabin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CabinPanel.html">CabinPanel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Doors.html">Doors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ElevatorController.html">ElevatorController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExternalPanel.html">ExternalPanel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ElevatorControllerDataSource.html">ElevatorControllerDataSource</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ElevatorControllerDataSource</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ElevatorControllerDataSource</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>ElevatorControllerDataSource</code> is adopted by an object that mediates the application’s
+data model for an <code><a href="../Classes/ElevatorController.html">ElevatorController</a></code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource35numberOfLevelsForElevatorControllerFT18elevatorControllerCS_18ElevatorController_Si"></a>
+                    <a name="//apple_ref/swift/Method/numberOfLevelsForElevatorController(elevatorController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource35numberOfLevelsForElevatorControllerFT18elevatorControllerCS_18ElevatorController_Si">numberOfLevelsForElevatorController(elevatorController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the number of levels in the elevator.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">numberOfLevelsForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the number.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The number of levels to be managed by the elevator controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource26cabinForElevatorControllerFT18elevatorControllerCS_18ElevatorController_CS_5Cabin"></a>
+                    <a name="//apple_ref/swift/Method/cabinForElevatorController(elevatorController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource26cabinForElevatorControllerFT18elevatorControllerCS_18ElevatorController_CS_5Cabin">cabinForElevatorController(elevatorController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for a cabin to manage.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">cabinForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Cabin.html">Cabin</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the cabin.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The cabin to be managed by the elevator controller.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource31cabinPanelForElevatorControllerFT18elevatorControllerCS_18ElevatorController_CS_10CabinPanel"></a>
+                    <a name="//apple_ref/swift/Method/cabinPanelForElevatorController(elevatorController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource31cabinPanelForElevatorControllerFT18elevatorControllerCS_18ElevatorController_CS_10CabinPanel">cabinPanelForElevatorController(elevatorController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for a cabin panel to manage.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">cabinPanelForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CabinPanel.html">CabinPanel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The cabin panel to be managed by the elevator.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController27abbreviationForLevelAtIndexSi_SS"></a>
+                    <a name="//apple_ref/swift/Method/elevatorController(elevatorController:abbreviationForLevelAtIndex:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController27abbreviationForLevelAtIndexSi_SS">elevatorController(elevatorController:abbreviationForLevelAtIndex:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the abbreviation that represents a level at a particular index.
+The abbreviation is used by <code><a href="../Classes/CabinPanel.html">CabinPanel</a></code>s and <code><a href="../Classes/ExternalPanel.html">ExternalPanel</a></code>s.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">abbreviationForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the abbreviation.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the level.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A string with an abbreviated name that will be used when displaying the level inside a panel.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController20doorsForLevelAtIndexSi_CS_5Doors"></a>
+                    <a name="//apple_ref/swift/Method/elevatorController(elevatorController:doorsForLevelAtIndex:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController20doorsForLevelAtIndexSi_CS_5Doors">elevatorController(elevatorController:doorsForLevelAtIndex:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the <code><a href="../Classes/Doors.html">Doors</a></code> the elevator controller will manage at a particular level.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">doorsForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Doors.html">Doors</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the doors.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the level at which the doors are located.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The doors to be managed.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController20panelForLevelAtIndexSi_CS_13ExternalPanel"></a>
+                    <a name="//apple_ref/swift/Method/elevatorController(elevatorController:panelForLevelAtIndex:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource18elevatorControllerFT18elevatorControllerCS_18ElevatorController20panelForLevelAtIndexSi_CS_13ExternalPanel">elevatorController(elevatorController:panelForLevelAtIndex:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the <code><a href="../Classes/CabinPanel.html">CabinPanel</a></code> that the controller will manage at a particular floor.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">elevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">,</span> <span class="n">panelForLevelAtIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/ExternalPanel.html">ExternalPanel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the external panel.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index for the level at which the panel is located.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The panel to be managed.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP11ElevatorKit28ElevatorControllerDataSource38defaultCabinLevelForElevatorControllerFT18elevatorControllerCS_18ElevatorController_Si"></a>
+                    <a name="//apple_ref/swift/Method/defaultCabinLevelForElevatorController(elevatorController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP11ElevatorKit28ElevatorControllerDataSource38defaultCabinLevelForElevatorControllerFT18elevatorControllerCS_18ElevatorController_Si">defaultCabinLevelForElevatorController(elevatorController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the index of the level at which the cabin will be located by default.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">defaultCabinLevelForElevatorController</span><span class="p">(</span><span class="nv">elevatorController</span><span class="p">:</span> <span class="kt"><a href="../Classes/ElevatorController.html">ElevatorController</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elevatorController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An elevator controller requesting the default cabin level.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index of the level.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-07-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
