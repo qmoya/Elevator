@@ -122,7 +122,7 @@ public final class ElevatorController {
 	}
 	
 	private func synchronousCall(destination: Level) {
-		for doors in floorControllers.map({$0.doors}) {
+		for doors in allDoors {
 			doors.state = .Closed
 		}
 		cabin.state = .Stopped(destination)
@@ -132,7 +132,7 @@ public final class ElevatorController {
 	private func asynchronousCall(destination: Level) {
 		isJanitorModeAvailable = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: timeIntervalForMoveOperation)
-		for close in floorControllers.map({$0.closeDoorsOperation(timeIntervalForDoorsOperation)}) {
+		for close in allCloseDoorsOperations {
 			move.addDependency(close)
 			operationQueue.addOperation(close)
 		}
@@ -142,6 +142,14 @@ public final class ElevatorController {
 			self?.isJanitorModeAvailable = true
 		}
 		operationQueue.addOperations([move, open], waitUntilFinished: false)
+	}
+	
+	private var allDoors: [Doors] {
+		return floorControllers.map({$0.doors})
+	}
+	
+	private var allCloseDoorsOperations: [CloseDoorsOperation] {
+		return floorControllers.map({$0.closeDoorsOperation(timeIntervalForDoorsOperation)})
 	}
 }
 
