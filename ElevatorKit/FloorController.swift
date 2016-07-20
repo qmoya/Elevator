@@ -14,7 +14,7 @@ internal final class FloorController {
 	internal let dataSource: FloorControllerDataSource
 
 	internal let externalPanel: ExternalPanel
-	
+
 	init(doors: Doors, panel: ExternalPanel, delegate: FloorControllerDelegate, dataSource: FloorControllerDataSource) {
 		self.doors = doors
 		self.delegate = delegate

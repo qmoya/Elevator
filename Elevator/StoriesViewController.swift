@@ -12,7 +12,7 @@ class StoriesViewController: UIPageViewController {
 	var storyViewControllerAboveStoryViewController: (StoryViewController) -> (StoryViewController?) = { _ in return nil }
 
 	var storyViewControllerBelowStoryViewController: (StoryViewController) -> (StoryViewController?) = { _ in return nil }
-	
+
 	var storyViewController: StoryViewController {
 		set {
 			setViewControllers([newValue], direction: .Forward, animated: false, completion: nil)
@@ -25,7 +25,7 @@ class StoriesViewController: UIPageViewController {
 			return last
 		}
 	}
-	
+
 	private func updateNavigationBarForStoryViewController(storyViewController: StoryViewController) {
 		navigationItem.title = storyViewController.navigationItem.title
 		navigationItem.rightBarButtonItem = storyViewController.navigationItem.rightBarButtonItem

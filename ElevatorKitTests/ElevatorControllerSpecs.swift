@@ -14,19 +14,19 @@ class ElevatorControllerSpecs: QuickSpec {
 
 			it("should be the delegate of the cabin") {
 				let controller = elevatorController as AnyObject
-				let cabinDelegate = elevatorController.cabin.delegate as! AnyObject
+				let cabinDelegate = elevatorController.cabin.delegate as? AnyObject
 				expect(controller).to(beIdenticalTo(cabinDelegate))
 			}
 
 			it("should be the data source of the cabin panel") {
 				let controller = elevatorController
-				let panelDataSource = elevatorController.cabinPanel.dataSource as! AnyObject
+				let panelDataSource = elevatorController.cabinPanel.dataSource as? AnyObject
 				expect(controller).to(beIdenticalTo(panelDataSource))
 			}
 
 			it("should be the delegate of the cabin panel") {
 				let controller = elevatorController
-				let panelDelegate = elevatorController.cabinPanel.delegate as! AnyObject
+				let panelDelegate = elevatorController.cabinPanel.delegate as? AnyObject
 				expect(controller).to(beIdenticalTo(panelDelegate))
 			}
 

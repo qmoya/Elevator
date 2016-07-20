@@ -12,13 +12,13 @@ final class StoryViewController: UIViewController {
 	var didTapEnter: () -> () = {}
 
 	@IBOutlet weak var displayView: DisplayView!
-	
+
 	@IBOutlet weak var backgroundImageView: UIImageView!
 
 	@IBAction func call(sender: AnyObject) {
 		story?.panel.call()
 	}
-	
+
 	@IBAction func enter(sender: AnyObject) {
 		didTapEnter()
 	}
@@ -31,7 +31,7 @@ final class StoryViewController: UIViewController {
 	private func refreshEnterButtonState() {
 		self.navigationItem.rightBarButtonItem?.enabled = story?.doors.state == .Open
 	}
-	
+
 	private func reloadData() {
 		refreshEnterButtonState()
 		updateDisplayText()
@@ -44,7 +44,7 @@ extension StoryViewController /* UIViewController */ {
 		backgroundImageView.image = UIImage(named: story!.backgroundImageName)
 		story?.panel.displayedTextDidChange = updateDisplayText
 	}
-	
+
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		story?.doors.didChangeExteriorState = refreshEnterButtonState

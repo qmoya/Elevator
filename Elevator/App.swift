@@ -19,7 +19,7 @@ final class App {
 		Story(name: "Fourth Floor", abbreviation: "4", backgroundImageName: "Purple"),
 		Story(name: "Fifth Floor", abbreviation: "5", backgroundImageName: "Red"),
 		Story(name: "Sixth Floor", abbreviation: "6", backgroundImageName: "Cyan"),
-		], defaultLevel: 1)
+		], indexOfDefaultStory: 1)
 
 
 	init(window: UIWindow) {
@@ -31,10 +31,10 @@ final class App {
 		self.navigationController = navigationController
 		self.buildingViewController = buildingViewController
 		elevatorController = ElevatorController(dataSource: self)
-		
+
 		configureStoriesViewController()
 	}
-	
+
 	private func configureStoriesViewController() {
 		buildingViewController.storyViewController = storyViewControllerForStory(building.defaultStory)!
 		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
@@ -79,7 +79,7 @@ final class App {
 	}
 
 	private func exitElevator() {
-		let level = building.cabin.currentLevel
+		let level = building.cabin.indexOfCurrentStory
 		let story = building.stories[level]
 		if let viewController = storyViewControllerForStory(story) {
 			buildingViewController.storyViewController = viewController
@@ -89,16 +89,16 @@ final class App {
 }
 
 extension App: ElevatorControllerDataSource {
-	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
-		return building.stories[level].doors  // FIXME: Demeter
+	func elevatorController(elevatorController: ElevatorController, doorsForLevelAtIndex index: Int) -> Doors {
+		return building.doorsForStoryAtIndex(index)
 	}
 
-	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String {
-		return building.stories[level].abbreviation // FIXME: Demeter
+	func elevatorController(elevatorController: ElevatorController, abbreviationForLevelAtIndex index: Int) -> String {
+		return building.abbreviationForStoryAtIndex(index)
 	}
 
-	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel {
-		return building.stories[level].panel // FIXME: Demeter
+	func elevatorController(elevatorController: ElevatorController, panelForLevelAtIndex index: Int) -> ExternalPanel {
+		return building.panelForStoryAtIndex(index)
 	}
 
 	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int {
@@ -112,8 +112,8 @@ extension App: ElevatorControllerDataSource {
 	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel {
 		return building.cabinPanel
 	}
-	
-	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level {
+
+	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Int {
 		return building.defaultLevel
 	}
 }

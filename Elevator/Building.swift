@@ -2,17 +2,17 @@ import ElevatorKit
 
 struct Building {
 	let stories: [Story]
-	
+
 	let defaultLevel: Int
 
-	let cabin = Cabin(level: 1)
+	let cabin = Cabin()
 
 	let cabinPanel = CabinPanel()
-	
+
 	var defaultStory: Story {
 		return stories[defaultLevel]
 	}
-	
+
 	func storyAboveStory(story: Story) -> Story? {
 		guard let index = stories.indexOf({$0 === story}) else { return nil }
 		if index == stories.count-1 { return nil }
@@ -26,11 +26,23 @@ struct Building {
 	}
 
 	func areDoorsOpenAtCurrentCabinLevel() -> Bool {
-		return stories[cabin.currentLevel].doors.state == .Open
+		return stories[cabin.indexOfCurrentStory].doors.state == .Open
 	}
 
-	init(stories: [Story], defaultLevel: Level) {
+	func doorsForStoryAtIndex(index: Int) -> Doors {
+		return stories[index].doors
+	}
+
+	func abbreviationForStoryAtIndex(index: Int) -> String {
+		return stories[index].abbreviation
+	}
+
+	func panelForStoryAtIndex(index: Int) -> ExternalPanel {
+		return stories[index].panel
+	}
+
+	init(stories: [Story], indexOfDefaultStory: Int) {
 		self.stories = stories
-		self.defaultLevel = defaultLevel
+		self.defaultLevel = indexOfDefaultStory
 	}
 }

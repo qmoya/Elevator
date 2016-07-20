@@ -26,7 +26,7 @@ class MockExternalPanelDelegate: ExternalPanelDelegate {
 class MockCabinPanelDelegate: CabinPanelDelegate {
 	var isJanitorModeSelected = false
 	var shouldToggleJanitorMode = false
-	
+
 	enum State {
 		case NotCalled
 		case Called(Level)

@@ -4,13 +4,15 @@ internal protocol CabinDelegate {
 
 public final class Cabin {
 
-	public init(level: Level) {
-		self.state = .Stopped(level)
-	}
+	public init() {}
 
 	public var didChangeState: () -> () = {}
-	
-	public var currentLevel: Level {
+
+	public var indexOfCurrentStory: Int {
+		return currentLevel
+	}
+
+	internal var currentLevel: Int {
 		return state.level
 	}
 
@@ -43,12 +45,12 @@ public final class Cabin {
 	}
 
 	internal(set) public var doors: Doors?
-	
+
 	internal var previousStates = [State]()
 
 	internal var delegate: CabinDelegate?
 
-	internal var state: State {
+	internal var state: State = .Stopped(0) {
 		didSet {
 			previousStates.append(oldValue)
 			if state != oldValue {
@@ -62,7 +64,7 @@ extension Cabin.State: Equatable {}
 
 // MARK: Equatable
 
-internal func ==(lhs: Cabin.State, rhs: Cabin.State) -> Bool {
+internal func == (lhs: Cabin.State, rhs: Cabin.State) -> Bool {
 	switch (lhs, rhs) {
 	case (.Stopped(let leftLevel), .Stopped(let rightLevel)):
 		return leftLevel == rightLevel

@@ -11,15 +11,15 @@ internal protocol CabinPanelDataSource {
 
 public final class CabinPanel {
 	internal var delegate: CabinPanelDelegate?
-	
+
 	internal var dataSource: CabinPanelDataSource? {
 		didSet {
 			reloadData()
 		}
 	}
 
-	public func call(level: Level) {
-		delegate?.cabinPanel(self, didCallLevel: level)
+	public func call(levelAtIndex index: Int) {
+		delegate?.cabinPanel(self, didCallLevel: index)
 	}
 
 	public func toggleJanitorMode() {

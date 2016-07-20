@@ -1,13 +1,13 @@
-public typealias Level = Int
+internal typealias Level = Int
 
 public protocol ElevatorControllerDataSource {
 	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int
 	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin
 	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel
-	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String
-	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors
-	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel
-	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level
+	func elevatorController(elevatorController: ElevatorController, abbreviationForLevelAtIndex index: Int) -> String
+	func elevatorController(elevatorController: ElevatorController, doorsForLevelAtIndex index: Int) -> Doors
+	func elevatorController(elevatorController: ElevatorController, panelForLevelAtIndex index: Int) -> ExternalPanel
+	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Int
 }
 
 public final class ElevatorController {
@@ -52,7 +52,7 @@ public final class ElevatorController {
 	internal var floorControllers = [FloorController]()
 
 	internal let operationQueue = NSOperationQueue()
-	
+
 	internal func call(destination: Level) {
 		if mode == .Janitor {
 			synchronousCall(destination)
@@ -60,19 +60,19 @@ public final class ElevatorController {
 		}
 		asynchronousCall(destination)
 	}
-	
+
 	private var timeIntervalForDoorsOperation: NSTimeInterval = 1
-	
+
 	private var timeIntervalForMoveOperation: NSTimeInterval = 2
 
 	private func loadFloorControllers() {
 		for level in 0..<dataSource.numberOfLevelsForElevatorController(self) {
-			let doors = dataSource.elevatorController(self, doorsForLevel: level)
+			let doors = dataSource.elevatorController(self, doorsForLevelAtIndex: level)
 			doors.delegate = self
 			if level == dataSource.defaultCabinLevelForElevatorController(self) {
 				doors.state = .Open
 			}
-			let panel = dataSource.elevatorController(self, panelForLevel: level)
+			let panel = dataSource.elevatorController(self, panelForLevelAtIndex: level)
 			let floorController = FloorController(doors: doors, panel: panel, delegate: self, dataSource: self)
 			floorControllers.append(floorController)
 		}
@@ -82,7 +82,7 @@ public final class ElevatorController {
 		cabin = dataSource.cabinForElevatorController(self)
 		let defaultLevel = dataSource.defaultCabinLevelForElevatorController(self)
 		cabin.state = .Stopped(defaultLevel)
-		cabin.doors = dataSource.elevatorController(self, doorsForLevel: defaultLevel)
+		cabin.doors = dataSource.elevatorController(self, doorsForLevelAtIndex: defaultLevel)
 		cabin.delegate = self
 	}
 
@@ -107,7 +107,7 @@ public final class ElevatorController {
 	}
 
 	private func reloadCabinData() {
-		cabin.doors = dataSource.elevatorController(self, doorsForLevel: cabin.currentLevel)
+		cabin.doors = dataSource.elevatorController(self, doorsForLevelAtIndex: cabin.currentLevel)
 		NSOperationQueue.mainQueue().addOperationWithBlock { [weak self] in
 			guard let s = self else { return }
 			s.cabin.didChangeState()
@@ -117,10 +117,10 @@ public final class ElevatorController {
 
 	private func panelText() -> String {
 		let arrow = cabin.state.arrow
-		let abbreviation = dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
+		let abbreviation = dataSource.elevatorController(self, abbreviationForLevelAtIndex: cabin.currentLevel)
 		return "\(arrow) \(abbreviation)"
 	}
-	
+
 	private func synchronousCall(destination: Level) {
 		for doors in allDoors {
 			doors.state = .Closed
@@ -128,7 +128,7 @@ public final class ElevatorController {
 		cabin.state = .Stopped(destination)
 		floorControllers[destination].doors.state = .Open
 	}
-	
+
 	private func asynchronousCall(destination: Level) {
 		isJanitorModeAvailable = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: timeIntervalForMoveOperation)
@@ -143,11 +143,11 @@ public final class ElevatorController {
 		}
 		operationQueue.addOperations([move, open], waitUntilFinished: false)
 	}
-	
+
 	private var allDoors: [Doors] {
 		return floorControllers.map({$0.doors})
 	}
-	
+
 	private var allCloseDoorsOperations: [CloseDoorsOperation] {
 		return floorControllers.map({$0.closeDoorsOperation(timeIntervalForDoorsOperation)})
 	}
@@ -165,7 +165,6 @@ extension ElevatorController: FloorControllerDelegate {
 
 extension ElevatorController: CabinDelegate {
 	func cabinDidChangeState(cabin: Cabin) {
-		print(cabin.state)
 		reloadFloorControllersData()
 		reloadCabinData()
 	}
