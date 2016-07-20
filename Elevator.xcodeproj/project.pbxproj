@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535715F1D38DDF900634F29 /* StoryViewController.swift */; };
-		A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571611D38DE3F00634F29 /* BuildingViewController.swift */; };
+		A53571621D38DE3F00634F29 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53571611D38DE3F00634F29 /* StoriesViewController.swift */; };
 		A57C16041D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16031D3BAE8900AE124A /* OpenDoorsOperationSpecs.swift */; };
 		A57C16061D3BB0B500AE124A /* ExternalPanelSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16051D3BB0B500AE124A /* ExternalPanelSpecs.swift */; };
 		A57C16081D3BC24D00AE124A /* CabinPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C16071D3BC24D00AE124A /* CabinPanel.swift */; };
@@ -119,7 +119,7 @@
 		A5020B101D3900800028CD1D /* Doors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
 		A5020B131D3901C60028CD1D /* OpenDoorsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenDoorsOperation.swift; path = ../ElevatorKit/OpenDoorsOperation.swift; sourceTree = "<group>"; };
 		A535715F1D38DDF900634F29 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
-		A53571611D38DE3F00634F29 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
+		A53571611D38DE3F00634F29 /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
 		A53571631D38DE8A00634F29 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		A53571651D38DEC700634F29 /* Building.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		A53571671D38DF0700634F29 /* Cabin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cabin.swift; sourceTree = "<group>"; };
@@ -236,10 +236,18 @@
 			isa = PBXGroup;
 			children = (
 				A535715F1D38DDF900634F29 /* StoryViewController.swift */,
-				A53571611D38DE3F00634F29 /* BuildingViewController.swift */,
+				A53571611D38DE3F00634F29 /* StoriesViewController.swift */,
 				A5E8BC2F1D36C077005A4317 /* CabinViewController.swift */,
 			);
 			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		A597432B1D3F036100E04DB9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5A6039D1D3C2909003FF839 /* DisplayView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		A5DE85781D3A42EF0052730D /* ElevatorKit */ = {
@@ -312,7 +320,7 @@
 				A5E8BC0B1D36B688005A4317 /* Info.plist */,
 				A5E8BC2D1D36BE3C005A4317 /* App.swift */,
 				A5020B151D39023F0028CD1D /* Model */,
-				A5A6039D1D3C2909003FF839 /* DisplayView.swift */,
+				A597432B1D3F036100E04DB9 /* View */,
 			);
 			path = Elevator;
 			sourceTree = "<group>";
@@ -600,7 +608,7 @@
 			files = (
 				A5A6039E1D3C2909003FF839 /* DisplayView.swift in Sources */,
 				A5C2244B1D3ACA8800F68507 /* Story.swift in Sources */,
-				A53571621D38DE3F00634F29 /* BuildingViewController.swift in Sources */,
+				A53571621D38DE3F00634F29 /* StoriesViewController.swift in Sources */,
 				A53571601D38DDF900634F29 /* StoryViewController.swift in Sources */,
 				A5E8BC301D36C077005A4317 /* CabinViewController.swift in Sources */,
 				A5E8BC2E1D36BE3C005A4317 /* App.swift in Sources */,

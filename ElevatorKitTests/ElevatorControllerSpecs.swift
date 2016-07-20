@@ -32,7 +32,7 @@ class ElevatorControllerSpecs: QuickSpec {
 
 			context("janitor mode is on") {
 				let elevatorController = ElevatorController(dataSource: dataSource)
-				try! elevatorController.setMode(.Janitor)
+				elevatorController.mode = .Janitor
 
 				it("should ignore external calls") {
 					let floorController = FloorController.fakeFloorController()

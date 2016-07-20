@@ -2,10 +2,13 @@ import UIKit
 import ElevatorKit
 
 final class App {
-
 	let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
 	let navigationController: UINavigationController
+
+	var elevatorController: ElevatorController!
+
+	var buildingViewController: StoriesViewController!
 
 	let building = Building(stories: [
 		Story(name: "Basement", abbreviation: "B", backgroundImageName: "Black"),
@@ -18,12 +21,10 @@ final class App {
 		Story(name: "Sixth Floor", abbreviation: "6", backgroundImageName: "Cyan"),
 		], defaultLevel: 1)
 
-	var elevatorController: ElevatorController!
-	
-	var buildingViewController: StoriesViewController!
-	
+
 	init(window: UIWindow) {
-		guard let navigationController = window.rootViewController as? UINavigationController, buildingViewController = navigationController.viewControllers[0] as? StoriesViewController else {
+		guard let navigationController = window.rootViewController as? UINavigationController,
+			buildingViewController = navigationController.viewControllers[0] as? StoriesViewController else {
 			fatalError("unexpected initial view controllers")
 		}
 
@@ -63,17 +64,23 @@ final class App {
 	}
 
 	func updateNavigationBarForStoryViewController(storyViewController: StoryViewController) {
-		navigationController.navigationBar.setItems([storyViewController.navigationItem], animated: false)
+		buildingViewController.navigationItem.title = storyViewController.navigationItem.title
+		buildingViewController.navigationItem.rightBarButtonItem = storyViewController.navigationItem.rightBarButtonItem
 	}
 
-	func showElevator() {
+	func instantiateCabinNavigationController() -> UINavigationController {
 		guard let navigationController = storyboard.instantiateViewControllerWithIdentifier("ElevatorNavigationControllerStoryboardIdentifier") as? UINavigationController,
 			elevatorViewController = navigationController.topViewController as? CabinViewController
-			else { return }
+			else { fatalError("couldn't find expected view controllers") }
 		elevatorViewController.didTapExit = exitElevator
 		elevatorViewController.cabin = building.cabin
 		elevatorViewController.panel = building.cabinPanel
+		return navigationController
+	}
 
+	func showElevator() {
+		let navigationController = instantiateCabinNavigationController()
+		navigationController.modalPresentationStyle = .FormSheet
 		self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
 	}
 
@@ -115,5 +122,11 @@ extension App: ElevatorControllerDataSource {
 	
 	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level {
 		return building.defaultLevel
+	}
+}
+
+class SplitViewControllerDelegate: NSObject, UISplitViewControllerDelegate {
+	func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+		return false
 	}
 }
