@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" generatesPrototypingConstraints="YES" useTraitCollections="YES" colorMatched="NO" initialViewController="rU4-wq-zti">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rU4-wq-zti">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="7000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +69,6 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bip-Vg-HLa">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="120"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
-                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -147,8 +146,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gray" translatesAutoresizingMaskIntoConstraints="NO" id="CN9-3W-BVe">
-                                <rect key="frame" x="4" y="64" width="592" height="536"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gray" translatesAutoresizingMaskIntoConstraints="NO" id="CN9-3W-BVe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fo3-Vw-zUW" userLabel="Display" customClass="DisplayView" customModule="Elevator" customModuleProvider="target">
                                 <rect key="frame" x="180" y="40" width="240" height="120"/>
@@ -164,7 +163,6 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-N3-daX">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="120"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
-                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -297,10 +295,10 @@
                             <constraint firstItem="Hi3-hn-kXQ" firstAttribute="trailing" secondItem="3Wf-qF-8ne" secondAttribute="trailing" id="H4X-kE-xSY"/>
                             <constraint firstItem="Hi3-hn-kXQ" firstAttribute="top" secondItem="3Wf-qF-8ne" secondAttribute="bottom" constant="50" id="Jkp-Vy-B7m"/>
                             <constraint firstItem="3Wf-qF-8ne" firstAttribute="centerY" secondItem="xlo-sO-KAv" secondAttribute="centerY" id="KE2-IZ-lZl"/>
-                            <constraint firstItem="CN9-3W-BVe" firstAttribute="top" secondItem="Jlt-zz-nSI" secondAttribute="bottom" id="RdU-Sr-qrP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CN9-3W-BVe" secondAttribute="trailing" constant="-16" id="Tm3-jy-Wwd"/>
-                            <constraint firstItem="CN9-3W-BVe" firstAttribute="leading" secondItem="xlo-sO-KAv" secondAttribute="leadingMargin" constant="-16" id="jBz-4D-YC0"/>
+                            <constraint firstAttribute="trailing" secondItem="CN9-3W-BVe" secondAttribute="trailing" id="Tm3-jy-Wwd"/>
+                            <constraint firstItem="CN9-3W-BVe" firstAttribute="leading" secondItem="xlo-sO-KAv" secondAttribute="leading" id="jBz-4D-YC0"/>
                             <constraint firstItem="Fo3-Vw-zUW" firstAttribute="centerX" secondItem="3Wf-qF-8ne" secondAttribute="centerX" id="qXH-qY-O5o"/>
+                            <constraint firstAttribute="topMargin" secondItem="CN9-3W-BVe" secondAttribute="top" id="zxG-c8-4RV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Gi-0y-6oE">
