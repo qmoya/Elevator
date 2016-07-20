@@ -1,21 +1,87 @@
 internal typealias Level = Int
 
+/**
+*  The `ElevatorControllerDataSource` is adopted by an object that mediates the application’s
+*  data model for an `ElevatorController`.
+*/
 public protocol ElevatorControllerDataSource {
+	/**
+	Asks the data source for the number of levels in the elevator.
+
+	- parameter elevatorController: An elevator controller requesting the number.
+
+	- returns: The number of levels to be managed by the elevator controller.
+	*/
 	func numberOfLevelsForElevatorController(elevatorController: ElevatorController) -> Int
+
+	/**
+	Asks the data source for a cabin to manage.
+
+	- parameter elevatorController: An elevator controller requesting the cabin.
+
+	- returns: The cabin to be managed by the elevator controller.
+	*/
 	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin
+
+	/**
+	Asks the data source for a cabin panel to manage.
+
+	- parameter elevatorController: An elevator controller requesting the
+
+	- returns: The cabin panel to be managed by the elevator.
+	*/
 	func cabinPanelForElevatorController(elevatorController: ElevatorController) -> CabinPanel
+
+	/**
+	Asks the data source for the abbreviation that represents a level at a particular index.
+	The abbreviation is used by `CabinPanel`s and `ExternalPanel`s.
+
+	- parameter elevatorController: An elevator controller requesting the abbreviation.
+	- parameter index:              The index of the level.
+
+	- returns: A string with an abbreviated name that will be used when displaying the level
+		inside a panel.
+	*/
 	func elevatorController(elevatorController: ElevatorController, abbreviationForLevelAtIndex index: Int) -> String
+
+	/**
+	Asks the data source for the `Doors` the elevator controller will manage at a particular level.
+
+	- parameter elevatorController: An elevator controller requesting the doors.
+	- parameter index:              The index for the level at which the doors are located.
+
+	- returns: The doors to be managed.
+	*/
 	func elevatorController(elevatorController: ElevatorController, doorsForLevelAtIndex index: Int) -> Doors
+
+	/**
+	Asks the data source for the `CabinPanel` that the controller will manage at a particular floor.
+
+	- parameter elevatorController: An elevator controller requesting the external panel.
+	- parameter index:              The index for the level at which the panel is located.
+
+	- returns: The panel to be managed.
+	*/
 	func elevatorController(elevatorController: ElevatorController, panelForLevelAtIndex index: Int) -> ExternalPanel
+
+	/**
+	Asks the data source for the index of the level at which the cabin will be located by default.
+
+	- parameter elevatorController: An elevator controller requesting the default cabin level.
+
+	- returns: The index of the level.
+	*/
 	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Int
 }
 
+/// An instance of `ElevatorController` coordinates the different objects that compose a particular
+/// elevator setup.
 public final class ElevatorController {
 	private(set) public var cabin: Cabin!
 
 	private(set) public var cabinPanel: CabinPanel!
 
-	public enum Mode {
+	internal enum Mode {
 		case Normal
 		case Janitor
 
@@ -29,7 +95,7 @@ public final class ElevatorController {
 		}
 	}
 
-	var mode: Mode = .Normal {
+	internal var mode: Mode = .Normal {
 		didSet {
 			cabinPanel.isJanitorModeEnabled = mode == .Janitor
 		}
