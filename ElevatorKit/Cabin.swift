@@ -38,12 +38,8 @@ public final class Cabin {
 		}
 	}
 
-	internal(set) public var doors: Doors? {
-		didSet {
-			print("setting doors of cabin")
-		}
-	}
-
+	internal(set) public var doors: Doors?
+	
 	internal var previousStates = [State]()
 
 	internal var delegate: CabinDelegate?

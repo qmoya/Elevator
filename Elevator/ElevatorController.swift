@@ -18,22 +18,28 @@ public final class ElevatorController {
 	public enum Mode {
 		case Normal
 		case Janitor
+
+		var toggled: Mode {
+			switch self {
+			case .Normal:
+				return .Janitor
+			case .Janitor:
+				return .Normal
+			}
+		}
 	}
 
-	private(set) var mode: Mode = .Normal {
+	var mode: Mode = .Normal {
 		didSet {
-			print("mode was set to \(mode)")
+			cabinPanel.isJanitorModeEnabled = mode == .Janitor
 		}
 	}
 
-	public func setMode(mode: Mode) throws {
-		if mode == .Janitor && !shouldEnableJanitorMode {
-			return
+	private var isJanitorModeAvailable: Bool = true {
+		didSet {
+			cabinPanel.isJanitorModeAvailable = isJanitorModeAvailable
 		}
-		self.mode = mode
 	}
-
-	private var shouldEnableJanitorMode: Bool = true
 
 	public let dataSource: ElevatorControllerDataSource
 
@@ -52,7 +58,7 @@ public final class ElevatorController {
 			cabin.state = .Stopped(destination)
 			return
 		}
-		shouldEnableJanitorMode = false
+		isJanitorModeAvailable = false
 		let move = MoveOperation(cabin: self.cabin, destination: destination, timeInterval: 2)
 		for close in floorControllers.map({$0.closeDoorsOperation()}) {
 			move.addDependency(close)
@@ -60,6 +66,9 @@ public final class ElevatorController {
 		}
 		let open = OpenDoorsOperation(doors: floorControllers[destination].doors, timeInterval: 1)
 		open.addDependency(move)
+		open.completionBlock = { [weak self] in
+			self?.isJanitorModeAvailable = true
+		}
 		operationQueue.addOperations([move, open], waitUntilFinished: false)
 	}
 
@@ -112,6 +121,12 @@ public final class ElevatorController {
 			s.cabinPanel.reloadData()
 		}
 	}
+
+	private func panelText() -> String {
+		let arrow = cabin.state.arrow
+		let abbreviation = dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
+		return "\(arrow) \(abbreviation)"
+	}
 }
 
 extension ElevatorController: FloorControllerDelegate {
@@ -131,9 +146,7 @@ extension ElevatorController: CabinDelegate {
 
 extension ElevatorController: FloorControllerDataSource {
 	func displayedTextForFloorController(floorController: FloorController) -> String {
-		let arrow = cabin.state.arrow
-		let abbreviation = dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
-		return "\(arrow) \(abbreviation)"
+		return panelText()
 	}
 }
 
@@ -143,15 +156,7 @@ extension ElevatorController: CabinPanelDataSource {
 	}
 
 	func displayedTextForCabinPanel(cabinPanel: CabinPanel) -> String {
-		return dataSource.elevatorController(self, abbreviationForLevel: cabin.currentLevel)
-	}
-
-	func isJanitorModeEnabledForCabinPanel(cabinPanel: CabinPanel) -> Bool {
-		return mode == .Janitor
-	}
-
-	func isJanitorModeAvailableForCabinPanel(cabinPanel: CabinPanel) -> Bool {
-		return mode == .Janitor || shouldEnableJanitorMode
+		return panelText()
 	}
 }
 
@@ -161,21 +166,22 @@ extension ElevatorController: CabinPanelDelegate {
 	}
 
 	func cabinPanelDidToggleJanitorMode(cabinPanel: CabinPanel) {
-		defer {
-			cabinPanel.reloadData()
+		mode = mode.toggled
+		NSOperationQueue.mainQueue().addOperationWithBlock {
+			cabinPanel.janitorModeDidChange()
 		}
-		if mode == .Normal {
-			mode = .Janitor
-			return
+	}
+
+	func cabinPanelDidChangeAvailabilityOfJanitorMode(cabinPanel: CabinPanel) {
+		NSOperationQueue.mainQueue().addOperationWithBlock {
+			cabinPanel.janitorModeAvailabilityDidChange()
 		}
-		mode = .Normal
 	}
 }
 
 extension ElevatorController: DoorsDelegate {
 	func doorsDidChangeState(doors: Doors) {
 		NSOperationQueue.mainQueue().addOperationWithBlock {
-			print("doors: \(doors.state)")
 			doors.didChangeExteriorState()
 			doors.didChangeInteriorState()
 		}

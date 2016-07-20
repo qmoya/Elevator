@@ -81,12 +81,4 @@ class StubCabinPanelDataSource: CabinPanelDataSource {
 	func displayedTextForCabinPanel(cabinPanel: CabinPanel) -> String {
 		return displayedText
 	}
-
-	func isJanitorModeEnabledForCabinPanel(cabinPanel: CabinPanel) -> Bool {
-		return isJanitorModeEnabled
-	}
-
-	func isJanitorModeAvailableForCabinPanel(cabinPanel: CabinPanel) -> Bool {
-		return isJanitorModeAvailable
-	}
 }

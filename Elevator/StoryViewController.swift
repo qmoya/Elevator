@@ -28,7 +28,6 @@ final class StoryViewController: UIViewController {
 	}
 
 	@IBAction func call(sender: AnyObject) {
-		print("elevator called on the \(story?.name)")
 		story?.panel.call()
 	}
 

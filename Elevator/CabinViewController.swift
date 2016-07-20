@@ -43,9 +43,6 @@ class CabinViewController: UIViewController {
 
 	func updateJanitorButtonEnabled() {
 		guard let panel = panel else { return }
-		if !panel.isJanitorModeAvailable {
-			print("alert")
-		}
 		janitorButton.enabled = panel.isJanitorModeAvailable
 	}
 
@@ -102,9 +99,5 @@ class CabinViewController: UIViewController {
 
 	@IBAction func goToSixthFloorWithSender(sender: AnyObject) {
 		call(7)
-	}
-
-	deinit {
-		print("DEINIT")
 	}
 }
