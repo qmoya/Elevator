@@ -8,7 +8,7 @@ final class App {
 
 	var elevatorController: ElevatorController!
 
-	var buildingViewController: StoriesViewController!
+	var storiesViewController: StoriesViewController!
 
 	let building = Building(stories: [
 		Story(name: "Basement", abbreviation: "B", backgroundImageName: "Black"),
@@ -29,16 +29,16 @@ final class App {
 		}
 
 		self.navigationController = navigationController
-		self.buildingViewController = buildingViewController
+		self.storiesViewController = buildingViewController
 		elevatorController = ElevatorController(dataSource: self)
 
 		configureStoriesViewController()
 	}
 
 	private func configureStoriesViewController() {
-		buildingViewController.storyViewController = storyViewControllerForStory(building.defaultStory)!
-		buildingViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
-		buildingViewController.storyViewControllerAboveStoryViewController = storyViewControllerAboveStoryViewController
+		storiesViewController.storyViewController = storyViewControllerForStory(building.defaultStory)!
+		storiesViewController.storyViewControllerBelowStoryViewController = storyViewControllerBelowStoryViewController
+		storiesViewController.storyViewControllerAboveStoryViewController = storyViewControllerAboveStoryViewController
 	}
 
 	private func initialStoryViewController() -> StoryViewController {
@@ -82,7 +82,7 @@ final class App {
 		let level = building.cabin.indexOfCurrentStory
 		let story = building.stories[level]
 		if let viewController = storyViewControllerForStory(story) {
-			buildingViewController.storyViewController = viewController
+			storiesViewController.storyViewController = viewController
 		}
 		navigationController.dismissViewControllerAnimated(true, completion: nil)
 	}

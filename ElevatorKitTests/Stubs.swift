@@ -7,17 +7,17 @@ class StubElevatorControllerDataSource: ElevatorControllerDataSource {
 	var numberOfLevels = 3
 	var cabinPanel = CabinPanel()
 	var defaultLevel = 0
-	var cabin = Cabin(level: 0)
+	var cabin = Cabin()
 
-	func elevatorController(elevatorController: ElevatorController, doorsForLevel level: Level) -> Doors {
+	func elevatorController(elevatorController: ElevatorController, doorsForLevelAtIndex level: Level) -> Doors {
 		return Doors(state: .Closed)
 	}
 
-	func elevatorController(elevatorController: ElevatorController, abbreviationForLevel level: Level) -> String {
+	func elevatorController(elevatorController: ElevatorController, abbreviationForLevelAtIndex level: Level) -> String {
 		return ""
 	}
 
-	func elevatorController(elevatorController: ElevatorController, panelForLevel level: Level) -> ExternalPanel {
+	func elevatorController(elevatorController: ElevatorController, panelForLevelAtIndex level: Level) -> ExternalPanel {
 		return ExternalPanel()
 	}
 
@@ -30,7 +30,7 @@ class StubElevatorControllerDataSource: ElevatorControllerDataSource {
 	}
 
 	func cabinForElevatorController(elevatorController: ElevatorController) -> Cabin {
-		return Cabin(level: 0)
+		return Cabin()
 	}
 
 	func defaultCabinLevelForElevatorController(elevatorController: ElevatorController) -> Level {

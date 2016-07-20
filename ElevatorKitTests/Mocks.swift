@@ -26,6 +26,7 @@ class MockExternalPanelDelegate: ExternalPanelDelegate {
 class MockCabinPanelDelegate: CabinPanelDelegate {
 	var isJanitorModeSelected = false
 	var shouldToggleJanitorMode = false
+	var didCallChangeAvailabilityOfJanitorMode = false
 
 	enum State {
 		case NotCalled
@@ -53,5 +54,9 @@ class MockCabinPanelDelegate: CabinPanelDelegate {
 
 	func cabinPanelShouldToggleJanitorMode(cabinPanel: CabinPanel) -> Bool {
 		return shouldToggleJanitorMode
+	}
+
+	func cabinPanelDidChangeAvailabilityOfJanitorMode(cabinPanel: CabinPanel) {
+		didCallChangeAvailabilityOfJanitorMode = true
 	}
 }

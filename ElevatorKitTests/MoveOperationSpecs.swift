@@ -5,7 +5,8 @@ import Nimble
 class MoveOperationSpecs: QuickSpec {
 	override func spec() {
 		describe("move operation") {
-			let cabin = Cabin(level: 2)
+			let cabin = Cabin()
+			cabin.state = .Stopped(2)
 			it("should accept moving to a level lower than the current one") {
 				let operation = MoveOperation(cabin: cabin, destination: 0, timeInterval: 0)
 				operation.start()

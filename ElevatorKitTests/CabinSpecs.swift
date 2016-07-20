@@ -5,29 +5,21 @@ import Nimble
 class CabinSpecs: QuickSpec {
 	override func spec() {
 		describe("cabin") {
-			it("should be initially stopped at the specified level") {
-				let cabin = Cabin(level: 1)
-				expect(cabin.currentLevel).to(equal(1))
+			it("should be initially stopped at level 0") {
+				let cabin = Cabin()
+				expect(cabin.currentLevel).to(equal(0))
 			}
 
 			it("should call the right delegate method when state is changed") {
-				let cabin = Cabin(level: 0)
+				let cabin = Cabin()
 				let delegate = TestCabinDelegate()
 				cabin.delegate = delegate
 				cabin.state = .MovingUp(3)
 				expect(delegate.cabinDidChangeStateWasCalled).toEventually(beTrue())
 			}
 
-			it("should not the right delegate method when state is changed") {
-				let cabin = Cabin(level: 2)
-				let delegate = TestCabinDelegate()
-				cabin.delegate = delegate
-				cabin.state = .Stopped(2)
-				expect(delegate.cabinDidChangeStateWasCalled).to(beFalse())
-			}
-
 			context("when it’s moving") {
-				let cabin = Cabin(level: 0)
+				let cabin = Cabin()
 				cabin.state = .MovingUp(5)
 
 				it("should have the correct current level") {
@@ -36,7 +28,7 @@ class CabinSpecs: QuickSpec {
 			}
 
 			context("when it’s stopped") {
-				let cabin = Cabin(level: 0)
+				let cabin = Cabin()
 				cabin.state = .Stopped(4)
 
 				it("should have the correct current level") {

@@ -9,17 +9,8 @@ class CabinPanelSpecs: QuickSpec {
 				let panel = CabinPanel()
 				let delegate = MockCabinPanelDelegate()
 				panel.delegate = delegate
-				panel.call(1)
+				panel.call(levelAtIndex: 1)
 				expect(delegate.state.level).to(equal(1))
-			}
-
-			it("should have the right number of levels") {
-				let panel = CabinPanel()
-				let dataSource = StubCabinPanelDataSource()
-				dataSource.numberOfLevels = 8
-				panel.dataSource = dataSource
-				panel.reloadData()
-				expect(panel.numberOfLevels).to(equal(8))
 			}
 
 			it("shouldn't display anything without a data source") {

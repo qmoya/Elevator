@@ -29,17 +29,6 @@ class ElevatorControllerSpecs: QuickSpec {
 				let panelDelegate = elevatorController.cabinPanel.delegate as? AnyObject
 				expect(controller).to(beIdenticalTo(panelDelegate))
 			}
-
-			context("janitor mode is on") {
-				let elevatorController = ElevatorController(dataSource: dataSource)
-				elevatorController.mode = .Janitor
-
-				it("should ignore external calls") {
-					let floorController = FloorController.fakeFloorController()
-					elevatorController.floorControllerDidCall(floorController)
-
-				}
-			}
 		}
 	}
 }
